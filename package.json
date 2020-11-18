@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prod": "ng build --prod --base-href https://leagle87.github.io/tw-game/",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
