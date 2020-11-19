@@ -51,6 +51,23 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
             }
           }
         },
@@ -62,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "tw-game:build:production"
+            },
+            "local": {
+              "browserTarget": "tw-game:build:local"
             }
           }
         },
@@ -116,6 +136,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "tw-game:serve:production"
+            },
+            "local": {
+              "devServerTarget": "tw-game:serve:local"
             }
           }
         },

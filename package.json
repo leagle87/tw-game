@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "prod": "ng build --prod --base-href https://leagle87.github.io/tw-game/",
-    "start": "ng serve",
+    "prod": "ng build --configuration=production --prod --base-href https://leagle87.github.io/tw-game/",
+    "start": "ng serve --configuration=local",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +21,9 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
+    "primeng": "10.0.3",
     "rxjs": "~6.3.3",
+    "tmi.js": "1.5.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

@@ -3,16 +3,30 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {WorddisplayComponent} from './component/worddisplay/worddisplay.component';
+import {ScoreboardComponent} from './component/scoreboard/scoreboard.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TmijsService} from './service/tmijs.service';
+import {LoginComponent} from './component/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WorddisplayComponent,
+    ScoreboardComponent,
+    LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+    imports: [
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      HttpClientModule,
+      ProgressSpinnerModule,
+      AppRoutingModule
+    ],
+  providers: [TmijsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
