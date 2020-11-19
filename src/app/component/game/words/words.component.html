@@ -1,0 +1,29 @@
+<input [disabled]="tmijsService.connected" [(ngModel)]="channel">
+<button [disabled]="tmijsService.connected" (click)="connect()">Connect</button>
+<button [disabled]="!tmijsService.connected" (click)="disconnect()">Disconnect</button>
+<button (click)="newGame()">Új játék</button>
+<input style="width: 100px" [disabled]="gameActive" [(ngModel)]="remainingTime"> másodperc
+
+
+<br>
+<br>
+<div class="charClass" *ngIf="words.wordList.length > 0">
+  <div *ngIf="gameActive">IDŐ: {{countBack}}</div>
+  <div *ngIf="!gameActive">VÉGE</div>
+
+  <div>
+    <span *ngFor="let char of words.characterList">
+      <span class="charClass">{{char}}</span>
+    </span>
+  </div>
+  <div style="display:inline-block;" class="charClass" *ngFor="let word of words.wordList">
+    <app-word [word]="word"></app-word>
+  </div>
+
+  <app-scoreboard></app-scoreboard>
+</div>
+
+<div id="overlay" *ngIf="true">
+  <p-progressSpinner id="spinner" animationDuration=".5s" strokeWidth="10"></p-progressSpinner>
+</div>
+

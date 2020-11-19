@@ -1,3 +1,2 @@
-<div>
-  Login works!
-</div>
+<button [disabled]="connected" (click)="login()">Login</button>
+<button [disabled]="!connected" (click)="logout()">Logout</button>

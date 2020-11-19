@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {WordsService} from '../../service/words.service';
-import {WordModel} from '../../model/word.model';
+import {Component} from '@angular/core';
 import {TmijsService} from '../../service/tmijs.service';
+import {environment} from '../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,23 @@ import {TmijsService} from '../../service/tmijs.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  userName: string = environment.user;
+  pass: string = environment.pass;
+  connected = false;
 
-  constructor(private tmijsService: TmijsService) {
+  constructor(private tmijsService: TmijsService,
+              private router: Router) {
+  }
+
+  login() {
+    this.tmijsService.start(this.userName, this.pass).then(() => {
+      this.connected = true;
+      this.router.navigate(['/game/words']);
+    });
+  }
+
+  logout() {
+    this.tmijsService.stop();
+    this.connected = false;
   }
 }
