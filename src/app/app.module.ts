@@ -13,6 +13,7 @@ import {WordsComponent} from './component/game/words/words.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
+import {LoadingService} from './service/loading.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {InputTextModule} from 'primeng/inputtext';
     ButtonModule,
     InputTextModule
   ],
-  providers: [TmijsService],
+  providers: [TmijsService, LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

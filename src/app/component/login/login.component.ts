@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {TmijsService} from '../../service/tmijs.service';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
+import {LoadingService} from '../../service/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,15 @@ export class LoginComponent {
   channel = 'black_xs';
 
   constructor(public tmijsService: TmijsService,
+              private loadingService: LoadingService,
               private router: Router) {
   }
 
   login() {
-    this.tmijsService.start(this.userName, this.pass);
+    this.loadingService.loadingOn();
+    this.tmijsService.start(this.userName, this.pass).then(() => {
+      this.loadingService.loadingOff();
+    });
   }
 
   logout() {

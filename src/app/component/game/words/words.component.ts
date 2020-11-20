@@ -7,6 +7,7 @@ import {WordresponseModel} from '../../../service/model/wordresponse.model';
 import {WordModel} from '../../../model/word.model';
 import {Message} from '../../../model/message';
 import {Router} from '@angular/router';
+import {LoadingService} from '../../../service/loading.service';
 
 @Component({
   selector: 'app-words',
@@ -24,6 +25,7 @@ export class WordsComponent implements OnInit, OnDestroy {
 
   constructor(public wordsService: WordsService,
               public tmijsService: TmijsService,
+              private loadingService: LoadingService,
               private router: Router) {
   }
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class WordsComponent implements OnInit, OnDestroy {
       this.textRecieved(data);
     });
     this.wordsService.wordResponseFound.subscribe(data => {
-      document.getElementById('overlay').style.display = 'none';
+      this.loadingService.loadingOff();
       this.startGame(data);
     });
   }
@@ -43,7 +45,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   newGame() {
-    document.getElementById('overlay').style.display = 'block';
+    this.loadingService.loadingOn();
     this.wordsService.getWords();
   }
 
