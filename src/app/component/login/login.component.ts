@@ -11,21 +11,29 @@ import {Router} from '@angular/router';
 export class LoginComponent {
   userName: string = environment.user;
   pass: string = environment.pass;
-  connected = false;
+  channel = 'black_xs';
 
   constructor(public tmijsService: TmijsService,
               private router: Router) {
   }
 
   login() {
-    this.tmijsService.start(this.userName, this.pass).then(() => {
-      this.connected = true;
-      this.router.navigate(['/game/words']);
-    });
+    this.tmijsService.start(this.userName, this.pass);
   }
 
   logout() {
     this.tmijsService.stop();
-    this.connected = false;
+  }
+
+  connect() {
+    this.tmijsService.joinChannel(this.channel);
+  }
+
+  disconnect() {
+    this.tmijsService.leaveChannel(this.channel);
+  }
+
+  startGame() {
+    this.router.navigate(['/game/words']);
   }
 }

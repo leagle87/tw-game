@@ -1,6 +1,3 @@
-<input pInputText [disabled]="tmijsService.connected" [(ngModel)]="channel">
-<p-button [disabled]="tmijsService.connected" (click)="connect()" label="Connect"></p-button>
-<p-button [disabled]="!tmijsService.connected" (click)="disconnect()" label="Disconnect"></p-button>
 <p-button (click)="newGame()" label="Új játék"></p-button>
 <input pInputText style="width: 100px" [disabled]="gameActive" [(ngModel)]="remainingTime"> másodperc
 

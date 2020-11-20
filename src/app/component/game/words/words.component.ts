@@ -15,7 +15,6 @@ import {Router} from '@angular/router';
   providers: [WordsService]
 })
 export class WordsComponent implements OnInit, OnDestroy {
-  channel = 'black_xs';
   words: WordsModel = new WordsModel();
   remainingTime = 60;
   countBack: number;
@@ -28,9 +27,12 @@ export class WordsComponent implements OnInit, OnDestroy {
               private router: Router) {
   }
   ngOnInit(): void {
-    if (!this.tmijsService.on) {
+    if (!this.tmijsService.on || !this.tmijsService.connected) {
       this.leaveGame();
     }
+    this.tmijsService.eventEmitter.on(MESSAGE_SENT, data => {
+      this.textRecieved(data);
+    });
     this.wordsService.wordResponseFound.subscribe(data => {
       document.getElementById('overlay').style.display = 'none';
       this.startGame(data);
@@ -38,9 +40,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.tmijsService.connected) {
-      this.tmijsService.leaveChannel(this.channel);
-    }
   }
 
   newGame() {
@@ -67,17 +66,6 @@ export class WordsComponent implements OnInit, OnDestroy {
       }
     }, 1000);
 
-  }
-
-  connect(): void {
-    this.tmijsService.joinChannel(this.channel);
-    this.tmijsService.eventEmitter.on(MESSAGE_SENT, data => {
-      this.textRecieved(data);
-    });
-  }
-
-  disconnect(): void {
-    this.tmijsService.leaveChannel(this.channel);
   }
 
   textRecieved(message: Message): void {

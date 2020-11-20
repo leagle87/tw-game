@@ -148,11 +148,13 @@ export class TmijsService {
       .then(data => {
         console.log(data);
         this.on = false;
+        this.connected = false;
         this.eventEmitter.emit(DISCONNECT);
       })
       .catch(err => {
         console.log(err);
         this.on = false;
+        this.connected = false;
       });
   }
 

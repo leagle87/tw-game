@@ -1,2 +1,8 @@
 <p-button [disabled]="tmijsService.on" (click)="login()" label="Login"></p-button>
 <p-button [disabled]="!tmijsService.on" (click)="logout()" label="Logout"></p-button>
+<br>
+<input pInputText [disabled]="tmijsService.connected || !tmijsService.on" [(ngModel)]="channel">
+<p-button [disabled]="tmijsService.connected || !tmijsService.on" (click)="connect()" label="Connect"></p-button>
+<p-button [disabled]="!tmijsService.connected || !tmijsService.on" (click)="disconnect()" label="Disconnect"></p-button>
+<br>
+<p-button [disabled]="!tmijsService.connected || !tmijsService.on" (click)="startGame()" label="Játék"></p-button>
