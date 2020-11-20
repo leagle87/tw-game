@@ -202,6 +202,7 @@ export class TmijsService {
    * @param channel
    */
   joinChannel(channel: string) {
+    this.currentChannel = channel;
     this.loadingService.loadingOn();
     if (this.client) {
       this.client
@@ -225,19 +226,21 @@ export class TmijsService {
    *
    * @param channel
    */
-  leaveChannel(channel: string) {
+  leaveChannel() {
     this.loadingService.loadingOn();
     if (this.client) {
       this.client
-        .part(channel)
+        .part(this.currentChannel)
         .then(data => {
-          console.log(`Left channel ${channel}.`);
+          console.log(`Left channel ${this.currentChannel}.`);
           this.connected = false;
+          this.currentChannel = '';
           this.loadingService.loadingOff();
           return true;
         })
         .catch(err => {
           console.error(err);
+          this.currentChannel = '';
           this.loadingService.loadingOff();
           return false;
         });

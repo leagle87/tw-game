@@ -11,10 +11,11 @@ import {Router} from '@angular/router';
 export class LoginComponent {
   userName: string = environment.user;
   pass: string = environment.pass;
-  channel = 'black_xs';
+  channel: string;
 
   constructor(public tmijsService: TmijsService,
               private router: Router) {
+    this.channel = this.tmijsService.currentChannel;
   }
 
   login() {
@@ -30,7 +31,7 @@ export class LoginComponent {
   }
 
   disconnect() {
-    this.tmijsService.leaveChannel(this.channel);
+    this.tmijsService.leaveChannel();
   }
 
   startGame() {
