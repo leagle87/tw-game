@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as tmi from 'tmi.js';
 import { EventEmitter } from 'events';
 import {Message} from '../model/message';
+import {LoadingService} from './loading.service';
 
 export const CONNECT = 'tmijs_service_connect';
 export const DISCONNECT = 'tmijs_service_disconnect';
@@ -16,7 +17,7 @@ export class TmijsService {
   connected = false;
   eventEmitter: EventEmitter = new EventEmitter();
 
-  constructor() {
+  constructor(private loadingService: LoadingService) {
   }
 
   /**
@@ -24,6 +25,7 @@ export class TmijsService {
    * Emits an event when it connects.
    */
   async start(userName: string, pass: string) {
+    this.loadingService.loadingOn();
     const devOptions: tmi.Options = {
       connection: {
         maxReconnectAttempts: 2,
@@ -62,7 +64,7 @@ export class TmijsService {
         this.eventEmitter.emit(CONNECT);
         this.client.on('message', (channel, userstate, messageText, self) => {
           // Don't listen to my own messages..
-          if (self) {return;}
+          if (self) {return; }
           const message: Message = {
             user: userstate['username'],
             message: messageText
@@ -128,13 +130,14 @@ export class TmijsService {
           );
           // Do your stuff.
         });
-        console.log(data);
-        return data;
+        this.loadingService.loadingOff();
+        // console.log(data);
+        // return data;
       })
       .catch(err => {
         console.error(err);
         this.on = false;
-        return err;
+        // return err;
       });
   }
 
@@ -143,6 +146,7 @@ export class TmijsService {
    * Emits an event when it disconnects and stops.
    */
   stop(): void {
+    this.loadingService.loadingOn();
     this.client
       .disconnect()
       .then(data => {
@@ -150,11 +154,13 @@ export class TmijsService {
         this.on = false;
         this.connected = false;
         this.eventEmitter.emit(DISCONNECT);
+        this.loadingService.loadingOff();
       })
       .catch(err => {
         console.log(err);
         this.on = false;
         this.connected = false;
+        this.loadingService.loadingOff();
       });
   }
 
@@ -196,16 +202,19 @@ export class TmijsService {
    * @param channel
    */
   joinChannel(channel: string) {
+    this.loadingService.loadingOn();
     if (this.client) {
       this.client
         .join(channel)
         .then(data => {
           console.log(`Joined channel ${channel}.`);
           this.connected = true;
+          this.loadingService.loadingOff();
           return true;
         })
         .catch(err => {
           console.error(err);
+          this.loadingService.loadingOff();
           return false;
         });
     }
@@ -217,16 +226,19 @@ export class TmijsService {
    * @param channel
    */
   leaveChannel(channel: string) {
+    this.loadingService.loadingOn();
     if (this.client) {
       this.client
         .part(channel)
         .then(data => {
           console.log(`Left channel ${channel}.`);
           this.connected = false;
+          this.loadingService.loadingOff();
           return true;
         })
         .catch(err => {
           console.error(err);
+          this.loadingService.loadingOff();
           return false;
         });
     }
