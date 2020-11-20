@@ -11,6 +11,8 @@ import {TmijsService} from './service/tmijs.service';
 import {LoginComponent} from './component/login/login.component';
 import {WordsComponent} from './component/game/words/words.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [TmijsService],
   bootstrap: [AppComponent]

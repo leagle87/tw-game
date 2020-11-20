@@ -13,7 +13,7 @@ const routes: Routes = [
       }
     ]},
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `first-component`
-  // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+  { path: '**', component: LoginComponent },  // Wildcard route for a 404 page
 ];
 
 @NgModule({
