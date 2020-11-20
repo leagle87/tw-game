@@ -3,17 +3,17 @@ import * as tmi from 'tmi.js';
 import { EventEmitter } from 'events';
 import {Message} from '../model/message';
 
-export const CONNECT: string = 'tmijs_service_connect';
-export const DISCONNECT: string = 'tmijs_service_disconnect';
-export const MESSAGE_SENT: string = 'tmijs_service_message_sent';
+export const CONNECT = 'tmijs_service_connect';
+export const DISCONNECT = 'tmijs_service_disconnect';
+export const MESSAGE_SENT = 'tmijs_service_message_sent';
 
 @Injectable()
 export class TmijsService {
   messages: Array<Message> = [];
   client: tmi.Client;
-  currentChannel: string = '';
-  on: boolean = false;
-  connected: boolean = false;
+  currentChannel = '';
+  on = false;
+  connected = false;
   eventEmitter: EventEmitter = new EventEmitter();
 
   constructor() {

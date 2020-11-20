@@ -12,7 +12,7 @@ import {LoginComponent} from './component/login/login.component';
 import {WordsComponent} from './component/game/words/words.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/components/inputtext/inputtext';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [

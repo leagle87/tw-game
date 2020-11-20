@@ -13,7 +13,7 @@ export class LoginComponent {
   pass: string = environment.pass;
   connected = false;
 
-  constructor(private tmijsService: TmijsService,
+  constructor(public tmijsService: TmijsService,
               private router: Router) {
   }
 

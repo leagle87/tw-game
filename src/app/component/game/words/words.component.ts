@@ -6,6 +6,7 @@ import {MESSAGE_SENT, TmijsService} from '../../../service/tmijs.service';
 import {WordresponseModel} from '../../../service/model/wordresponse.model';
 import {WordModel} from '../../../model/word.model';
 import {Message} from '../../../model/message';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-words',
@@ -14,18 +15,22 @@ import {Message} from '../../../model/message';
   providers: [WordsService]
 })
 export class WordsComponent implements OnInit, OnDestroy {
-  channel: string = 'black_xs';
+  channel = 'black_xs';
   words: WordsModel = new WordsModel();
   remainingTime = 60;
   countBack: number;
   interval;
-  gameActive: boolean = false;
+  gameActive = false;
   @ViewChild(ScoreboardComponent) private scoreboard: ScoreboardComponent;
 
-  constructor(private wordsService: WordsService,
-              public tmijsService: TmijsService) {
+  constructor(public wordsService: WordsService,
+              public tmijsService: TmijsService,
+              private router: Router) {
   }
   ngOnInit(): void {
+    if (!this.tmijsService.on) {
+      this.leaveGame();
+    }
     this.wordsService.wordResponseFound.subscribe(data => {
       document.getElementById('overlay').style.display = 'none';
       this.startGame(data);
@@ -33,7 +38,9 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.tmijsService.stop();
+    if (this.tmijsService.connected) {
+      this.tmijsService.leaveChannel(this.channel);
+    }
   }
 
   newGame() {
@@ -92,5 +99,9 @@ export class WordsComponent implements OnInit, OnDestroy {
         word.notFounded = true;
       }
     });
+  }
+
+  leaveGame() {
+    this.router.navigate(['/login']);
   }
 }
