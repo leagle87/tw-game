@@ -65,9 +65,8 @@ export class TmijsService {
         this.client.on('message', (channel, userstate, messageText, self) => {
           // Don't listen to my own messages..
           // if (self) {return; }
-          console.log(userstate);
           const message: Message = {
-            user: userstate['username'],
+            user: userstate['display-name'],
             message: messageText,
             color: userstate['color']
           };

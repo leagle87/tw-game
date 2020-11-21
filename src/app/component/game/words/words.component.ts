@@ -29,6 +29,7 @@ export class WordsComponent implements OnInit, OnDestroy {
               private loadingService: LoadingService,
               private router: Router) {
   }
+
   ngOnInit(): void {
     if (!this.tmijsService.on || !this.tmijsService.connected) {
       this.leaveGame();
@@ -80,6 +81,7 @@ export class WordsComponent implements OnInit, OnDestroy {
           this.words.wordList[i].founderColor = message.color;
           this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
           this.wordFoudedCount++;
+          this.playAudio();
         } else if (this.words.wordList[i].word === message.message) {
           this.tmijsService.say('@' + message.user + ' a ' + message.message + ' vótmán');
         }
@@ -98,5 +100,12 @@ export class WordsComponent implements OnInit, OnDestroy {
 
   leaveGame() {
     this.router.navigate(['/login']);
+  }
+
+  private playAudio() {
+    const audio = new Audio();
+    audio.src = '';
+    audio.load();
+    audio.play();
   }
 }
