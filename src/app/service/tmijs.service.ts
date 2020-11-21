@@ -64,10 +64,12 @@ export class TmijsService {
         this.eventEmitter.emit(CONNECT);
         this.client.on('message', (channel, userstate, messageText, self) => {
           // Don't listen to my own messages..
-          if (self) {return; }
+          // if (self) {return; }
+          console.log(userstate);
           const message: Message = {
             user: userstate['username'],
-            message: messageText
+            message: messageText,
+            color: userstate['color']
           };
           // Handle different message types..
           switch (userstate['message-type']) {
@@ -170,21 +172,15 @@ export class TmijsService {
    * @param channel
    * @param message
    */
-  // say(channel: string, message: string) {
-  //   this.client
-  //     .say(channel, message)
-  //     .then(data => {
-  //       const m: Message = {
-  //         channel: channel,
-  //         username: this.client.getUsername(),
-  //         message: message
-  //       };
-  //       this.addMessage(m);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //     });
-  // }
+  say(message: string) {
+    this.client
+      .say(this.currentChannel, message)
+      .then(data => {
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
   /**
    * Adds message to the messages array and emits an event attached with the message.

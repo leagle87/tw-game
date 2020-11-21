@@ -77,8 +77,11 @@ export class WordsComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.words.wordList.length; i++) {
         if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message) {
           this.words.wordList[i].founder = message.user;
+          this.words.wordList[i].founderColor = message.color;
           this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
           this.wordFoudedCount++;
+        } else if (this.words.wordList[i].word === message.message) {
+          this.tmijsService.say('@' + message.user + ' a ' + message.message + ' vótmán');
         }
       }
     }

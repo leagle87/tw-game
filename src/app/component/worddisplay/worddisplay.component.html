@@ -2,7 +2,7 @@
   <span *ngFor="let n of numSequence(word.word.length); index as i">
     {{word.word.charAt(i)}}
   </span>
-  <span style="font-size: 16px">({{word.founder}})</span>
+  <div style="font-size: 16px" [ngStyle]="{'color': word.founderColor}">({{word.founder}})</div>
 </span>
 <span style="width: 10%" *ngIf="word.founder === undefined && word.notFounded == false">
   <span *ngFor="let n of numSequence(word.word.length)">
