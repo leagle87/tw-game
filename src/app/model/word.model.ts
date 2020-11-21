@@ -1,7 +1,6 @@
 export class WordModel {
 
   word: string;
-  found: boolean = false;
   founder: string;
   notFounded: boolean = false;
 

@@ -1,15 +1,15 @@
-<span style="width: 10%" *ngIf="word.found == true">
+<span style="width: 10%" *ngIf="word.founder">
   <span *ngFor="let n of numSequence(word.word.length); index as i">
     {{word.word.charAt(i)}}
   </span>
   <span style="font-size: 16px">({{word.founder}})</span>
 </span>
-<span style="width: 10%" *ngIf="word.found == false && word.notFounded == false">
+<span style="width: 10%" *ngIf="word.founder === undefined && word.notFounded == false">
   <span *ngFor="let n of numSequence(word.word.length)">
     _
   </span>
 </span>
-<span style="width: 10%; color: red" *ngIf="word.found == false && word.notFounded">
+<span style="width: 10%; color: red" *ngIf="word.founder === undefined && word.notFounded">
   <span *ngFor="let n of numSequence(word.word.length); index as i">
     {{word.word.charAt(i)}}
   </span>

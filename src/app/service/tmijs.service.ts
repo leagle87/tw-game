@@ -12,7 +12,7 @@ export const MESSAGE_SENT = 'tmijs_service_message_sent';
 export class TmijsService {
   messages: Array<Message> = [];
   client: tmi.Client;
-  currentChannel = '';
+  currentChannel = 'black_xs';
   on = false;
   connected = false;
   eventEmitter: EventEmitter = new EventEmitter();

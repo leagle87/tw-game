@@ -1,13 +1,15 @@
 <p-button (click)="newGame()" label="Új játék"></p-button>
 <input pInputText style="width: 100px" [disabled]="gameActive" [(ngModel)]="remainingTime"> másodperc
 
-<p-button (click)="leaveGame()" label="Vissza"></p-button>
+<p-button (click)="leaveGame()" label="Vissza" style="float: right"></p-button>
 
 <br>
 <br>
 <div class="charClass" *ngIf="words.wordList.length > 0">
   <div *ngIf="gameActive">IDŐ: {{countBack}}</div>
   <div *ngIf="!gameActive">VÉGE</div>
+
+  <div>Megtalált szavak: {{wordFoudedCount}}/{{words.wordList.length}}</div>
 
   <div>
     <span *ngFor="let char of words.characterList">

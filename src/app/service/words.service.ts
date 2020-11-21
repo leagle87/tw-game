@@ -14,20 +14,16 @@ export class WordsService {
   constructor(private http: HttpClient) {
   }
 
-  getWords(): void {
-    this.readWordTxt();
-  }
-
-  private readWordTxt(): void {
+  getWords(letterCount: number, minWordCount: number): void {
     this.http.get('assets/words.txt', {responseType: 'text'})
       .subscribe(data => {
         const splittedData: string[] = data.split('\n');
         splittedData.splice(splittedData.length - 1);
         this.wordresponse.wordList = [];
-        while (this.wordresponse.wordList.length < 15) {
+        while (this.wordresponse.wordList.length < minWordCount) {
           this.wordresponse.wordList = [];
           this.wordresponse.characterList = [];
-          this.getRandomLetters(8).forEach(ch => {
+          this.getRandomLetters(letterCount).forEach(ch => {
             this.wordresponse.characterList.push(ch);
           });
           splittedData.forEach(word => {
@@ -41,6 +37,9 @@ export class WordsService {
         });
         this.wordResponseSource.next(this.wordresponse);
       });
+  }
+
+  private readWordTxt(): void {
   }
 
   private getRandomLetters(count: number): string[] {

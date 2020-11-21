@@ -21,6 +21,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   countBack: number;
   interval;
   gameActive = false;
+  wordFoudedCount = 0;
   @ViewChild(ScoreboardComponent) private scoreboard: ScoreboardComponent;
 
   constructor(public wordsService: WordsService,
@@ -46,7 +47,8 @@ export class WordsComponent implements OnInit, OnDestroy {
 
   newGame() {
     this.loadingService.loadingOn();
-    this.wordsService.getWords();
+    this.wordsService.getWords(8, 15);
+    this.wordFoudedCount = 0;
   }
 
   private startGame(data: WordresponseModel) {
@@ -73,10 +75,10 @@ export class WordsComponent implements OnInit, OnDestroy {
   textRecieved(message: Message): void {
     if (this.gameActive) {
       for (let i = 0; i < this.words.wordList.length; i++) {
-        if (this.words.wordList[i].found === false && this.words.wordList[i].word === message.message) {
-          this.words.wordList[i].found = true;
+        if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message) {
           this.words.wordList[i].founder = message.user;
           this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
+          this.wordFoudedCount++;
         }
       }
     }
