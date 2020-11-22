@@ -15,7 +15,7 @@ export class WordsService {
   }
 
   getWords(letterCount: number, minWordCount: number): void {
-    this.http.get('assets/words.txt', {responseType: 'text'})
+    this.http.get('assets/arcanum_hu_words.txt', {responseType: 'text'})
       .subscribe(data => {
         const splittedData: string[] = data.split('\n');
         splittedData.splice(splittedData.length - 1);

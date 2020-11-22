@@ -14,6 +14,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {LoadingService} from './service/loading.service';
+import {ContextMenuModule} from 'primeng/contextmenu';
 
 @NgModule({
   declarations: [
@@ -23,16 +24,17 @@ import {LoadingService} from './service/loading.service';
     LoginComponent,
     WordsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ProgressSpinnerModule,
-    ButtonModule,
-    InputTextModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ProgressSpinnerModule,
+        ButtonModule,
+        InputTextModule,
+        ContextMenuModule
+    ],
   providers: [TmijsService, LoadingService],
   bootstrap: [AppComponent]
 })

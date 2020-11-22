@@ -1,4 +1,5 @@
-<span style="width: 10%" *ngIf="word.founder">
+<span #foundedWord style="width: 10%" *ngIf="word.founder">
+  <p-contextMenu [target]="foundedWord" [model]="menuItems"></p-contextMenu>
   <span *ngFor="let n of numSequence(word.word.length); index as i">
     {{word.word.charAt(i)}}
   </span>
@@ -9,7 +10,8 @@
     _
   </span>
 </span>
-<span style="width: 10%; color: red" *ngIf="word.founder === undefined && word.notFounded">
+<span #foundedWord style="width: 10%; color: red" *ngIf="word.founder === undefined && word.notFounded">
+  <p-contextMenu [target]="foundedWord" [model]="menuItems"></p-contextMenu>
   <span *ngFor="let n of numSequence(word.word.length); index as i">
     {{word.word.charAt(i)}}
   </span>
