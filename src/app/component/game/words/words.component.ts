@@ -48,7 +48,7 @@ export class WordsComponent implements OnInit, OnDestroy {
 
   newGame() {
     this.loadingService.loadingOn();
-    this.wordsService.getWords(8, 15);
+    this.wordsService.getWords(8, 15, 3);
     this.wordFoudedCount = 0;
   }
 

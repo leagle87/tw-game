@@ -14,20 +14,20 @@ export class WordsService {
   constructor(private http: HttpClient) {
   }
 
-  getWords(letterCount: number, minWordCount: number): void {
+  getWords(letterCount: number, minWordCount: number, minWordLength: number): void {
     this.http.get('assets/arcanum_hu_words.txt', {responseType: 'text'})
       .subscribe(data => {
         const splittedData: string[] = data.split('\n');
         splittedData.splice(splittedData.length - 1);
         this.wordresponse.wordList = [];
-        while (this.wordresponse.wordList.length < minWordCount) {
+        while (this.wordresponse.wordList.length < minWordCount || !this.containsOnlyRelevantLetters()) {
           this.wordresponse.wordList = [];
           this.wordresponse.characterList = [];
           this.getRandomLetters(letterCount).forEach(ch => {
             this.wordresponse.characterList.push(ch);
           });
           splittedData.forEach(word => {
-            if (word.length > 2 && this.contains(this.wordresponse.characterList, word)) {
+            if (word.length >= minWordLength && this.contains(this.wordresponse.characterList, word)) {
               this.wordresponse.wordList.push(word);
             }
           });
@@ -41,8 +41,7 @@ export class WordsService {
 
   private getRandomLetters(count: number): string[] {
     const result: string[] = [];
-    const abc: string[] = ['a', 'á', 'b', 'c', 'd', 'e', 'é', 'f', 'g', 'h', 'i', 'í', 'j', 'k', 'l', 'm', 'n', 'o', 'ó', 'ö', 'ő', 'p', 'r', 's', 't', 'u', 'ú', 'ü', 'ű', 'v', 'y', 'z'];
-    // const abc: string[] = ['a', 'á', 'b', 'c', 'd', 'e', 'é', 'f', 'g', 'h', 'i', 'í', 'j', 'k', 'l', 'm', 'n', 'o', 'ó', 'ö', 'ő', 'p', 'q', 'r', 's', 't', 'u', 'ú', 'ü', 'ű', 'v', 'w', 'x', 'y', 'z'];
+    const abc: string[] = ['a', 'á', 'b', 'c', 'd', 'e', 'é', 'f', 'g', 'h', 'i', 'í', 'j', 'k', 'l', 'm', 'n', 'o', 'ó', 'ö', 'ő', 'p', 'q', 'r', 's', 't', 'u', 'ú', 'ü', 'ű', 'v', 'w', 'x', 'y', 'z'];
     for (let i = 0; i < count; i++) {
       const rnd =  Math.floor(Math.random() * abc.length);
       result.push(abc[rnd]);
@@ -63,4 +62,33 @@ export class WordsService {
     return wordWorkCopy.length === 0;
   }
 
+  private containsOnlyRelevantLetters(): boolean {
+    const wordWorkCopy: any[] = [];
+    this.wordresponse.wordList.forEach(word => {
+      wordWorkCopy.push(word.split(''));
+    });
+
+    const charListWorkCopy: any[] = [];
+    this.wordresponse.characterList.forEach(ch => {
+      charListWorkCopy.push({ch: ch, count: 0, alreadyCounted: false});
+    });
+    for (const wch of charListWorkCopy) {
+      for (const word of wordWorkCopy) {
+        wch.alreadyCounted = false;
+        for (const ch of word) {
+          if (ch === wch.ch && wch.alreadyCounted === false) {
+            wch.count++;
+            wch.alreadyCounted = true;
+          }
+        }
+      }
+    }
+    let isValid = true;
+    charListWorkCopy.forEach(ch => {
+      if (ch.count === 0) {
+        isValid = false;
+      }
+    });
+    return isValid;
+  }
 }
