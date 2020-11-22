@@ -5,20 +5,29 @@
 
 <br>
 <br>
-<div class="charClass" *ngIf="words.wordList.length > 0">
-  <div *ngIf="gameActive">IDŐ: {{countBack}}</div>
-  <div *ngIf="!gameActive">VÉGE</div>
 
-  <div>Megtalált szavak: {{wordFoudedCount}}/{{words.wordList.length}}</div>
+<div class="p-grid charClass" *ngIf="words.wordList.length > 0">
 
-  <div>
-    <span *ngFor="let char of words.characterList">
-      <span class="charClass">{{char}}</span>
-    </span>
+  <div class="p-col-9">
+    <div class="p-grid">
+      <div class="p-col-3">
+        <div class="p-col" *ngIf="gameActive">IDŐ: {{countBack}}</div>
+        <div class="p-col" *ngIf="!gameActive">VÉGE</div>
+      </div>
+      <div class="p-col-8">
+        Megtalált szavak: {{wordFoudedCount}}/{{words.wordList.length}}
+      </div>
+      <div class="p-col-12" style="text-align: center;">
+      <span *ngFor="let char of words.characterList">
+        <span class="charClass">{{char}}</span>
+      </span>
+      </div>
+      <div class="p-col-2" style="font-size: 50px" *ngFor="let word of words.wordList">
+        <app-word [word]="word"></app-word>
+      </div>
+    </div>
   </div>
-  <div style="display:inline-block;" class="charClass" *ngFor="let word of words.wordList">
-    <app-word [word]="word"></app-word>
+  <div class="p-col-3">
+    <app-scoreboard></app-scoreboard>
   </div>
-
-  <app-scoreboard></app-scoreboard>
 </div>
