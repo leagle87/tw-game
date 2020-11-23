@@ -15,6 +15,8 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {LoadingService} from './service/loading.service';
 import {ContextMenuModule} from 'primeng/contextmenu';
+import {RippleModule} from 'primeng/ripple';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -24,17 +26,19 @@ import {ContextMenuModule} from 'primeng/contextmenu';
     LoginComponent,
     WordsComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        AppRoutingModule,
-        ProgressSpinnerModule,
-        ButtonModule,
-        InputTextModule,
-        ContextMenuModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ProgressSpinnerModule,
+    ButtonModule,
+    InputTextModule,
+    ContextMenuModule,
+    RippleModule,
+    InputNumberModule
+  ],
   providers: [TmijsService, LoadingService],
   bootstrap: [AppComponent]
 })

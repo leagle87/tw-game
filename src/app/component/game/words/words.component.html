@@ -2,11 +2,12 @@
   <div class="p-col-9">
     <div class="p-grid">
       <div class="p-col-3">
-        <div *ngIf="gameActive">IDŐ: {{countBackMin}}:{{countBackSec}}</div>
-        <div *ngIf="!gameActive">VÉGE</div>
+        <div class="counter">
+          {{countBackMin}}:{{countBackSec}}
+        </div>
         <div id="timeControl" class="timeControlClass">
-          <input pInputText style="width: 140px" [disabled]="gameActive" [(ngModel)]="remainingTime" placeholder="Idő (másodperc)">
-          <p-button (click)="newGame()" label="Indít"></p-button>
+          <p-inputNumber style="width: 140px" [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="30" max="300"></p-inputNumber>
+          <button pButton pRipple [disabled]="remainingTime === undefined" type="button" (click)="newGame()" label="Indít" class="p-button-rounded p-button-warning"></button>
         </div>
       </div>
       <div class="p-col-9" *ngIf="words.wordList.length > 0">

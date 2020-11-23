@@ -20,13 +20,35 @@
 }
 
 .timeControlClass {
-  width: 230px;
+  width: 480px;
+  font-size: 10px;
+  text-align: center;
+  height: 80px;
+  padding-top: 22px;
+  padding-left: 160px;
   position: fixed;
   overflow-y: auto;
-  z-index: 1;
-  top: 65px;
-  left: -230px;
+  z-index: 0;
+  top: 15px;
+  left: -300px;
   background-color: #eae8e7;
   overflow-x: hidden;
   transition: 0.5s;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.counter {
+  position: fixed;
+  z-index: 1;
+  background-color: #f6b833;
+  color: #171a1e;
+  border-bottom-right-radius: 107px;
+  border-top-right-radius: 45px;
+  width: 150px;
+  margin-left: -35px;
+  padding-left: 8px;
+  padding-top: 48px;
+  margin-top: -67px;
+  height: 155px;
 }

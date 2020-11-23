@@ -22,7 +22,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   countBackMin = '0';
   countBackSec = '00';
   interval;
-  gameActive = false;
   wordFoudedCount = 0;
   @ViewChild(ScoreboardComponent) private scoreboard: ScoreboardComponent;
 
@@ -67,7 +66,6 @@ export class WordsComponent implements OnInit, OnDestroy {
     if (this.scoreboard) {
       this.scoreboard.reset();
     }
-    this.gameActive = true;
     this.closeTC();
     this.interval = setInterval(() => {
       this.countBack--;
@@ -79,12 +77,17 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   private calculateDisplayTime() {
-    this.countBackMin = Math.floor(this.countBack / 60).toString();
-    this.countBackSec = (this.countBack % 60).toString().length < 2 ? '0' + (this.countBack % 60).toString() : (this.countBack % 60).toString();
+    if (this.countBack > 0) {
+      this.countBackMin = Math.floor(this.countBack / 60).toString();
+      this.countBackSec = (this.countBack % 60).toString().length < 2 ? '0' + (this.countBack % 60).toString() : (this.countBack % 60).toString();
+    } else {
+      this.countBackMin = '0';
+      this.countBackSec = '00';
+    }
   }
 
   textRecieved(message: Message): void {
-    if (this.gameActive) {
+    if (this.countBack > 0) {
       for (let i = 0; i < this.words.wordList.length; i++) {
         if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message) {
           this.words.wordList[i].founder = message.user;
@@ -99,7 +102,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   private gameEnd() {
-    this.gameActive = false;
     this.words.wordList.forEach(word => {
       if (!word.founder) {
         word.notFounded = true;
@@ -124,6 +126,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   private closeTC() {
-    document.getElementById('timeControl').style.left = '-230px';
+    document.getElementById('timeControl').style.left = '-480px';
   }
 }
