@@ -4,9 +4,9 @@
     {{word.word.toUpperCase()}}
   </div>
 </div>
-<div *ngIf="word.founder === undefined && word.notFounded == false">
-  <span style="font-size: 40px; color: #6f7174" *ngFor="let n of numSequence(word.word.length)">
+<div style="font-size: 40px; color: #6f7174" *ngIf="word.founder === undefined && word.notFounded == false">
+  <span *ngFor="let n of numSequence(word.word.length)" style="margin: -4px">
     _
   </span>
 </div>
-<div style="font-size: 16px; height: 20px; color: #baae8b">{{word.founder}}</div>
+<div style="font-size: 16px; height: 20px; color: #baae8b; margin-top: -20px;">{{word.founder}}</div>

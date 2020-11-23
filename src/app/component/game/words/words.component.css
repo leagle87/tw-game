@@ -30,7 +30,7 @@
   overflow-y: auto;
   z-index: 0;
   top: 15px;
-  left: -300px;
+  left: 0px;
   background-color: #eae8e7;
   overflow-x: hidden;
   transition: 0.5s;
@@ -45,10 +45,21 @@
   color: #171a1e;
   border-bottom-right-radius: 107px;
   border-top-right-radius: 45px;
-  width: 150px;
-  margin-left: -35px;
-  padding-left: 8px;
-  padding-top: 48px;
+  border-style: solid;
+  border-width: 8px;
+  border-color: #f2972a;
+  width: 183px;
+  margin-left: -46px;
+  padding-left: 15px;
+  padding-top: 35px;
   margin-top: -67px;
   height: 155px;
+}
+
+.exitButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-family: Coiny, Arial, sans-serif;
+  font-size: 24px;
 }

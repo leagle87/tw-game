@@ -6,8 +6,8 @@
           {{countBackMin}}:{{countBackSec}}
         </div>
         <div id="timeControl" class="timeControlClass">
-          <p-inputNumber style="width: 140px" [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="30" max="300"></p-inputNumber>
-          <button pButton pRipple [disabled]="remainingTime === undefined" type="button" (click)="newGame()" label="Indít" class="p-button-rounded p-button-warning"></button>
+          <p-inputNumber [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="1" max="300"></p-inputNumber>
+          <button pButton pRipple [disabled]="remainingTime === undefined" type="button" (click)="newGame()" label="Indít" class="p-button-rounded p-button-warning" style="margin-left: 10px"></button>
         </div>
       </div>
       <div class="p-col-9" *ngIf="words.wordList.length > 0">
@@ -17,9 +17,9 @@
           </span>
         </div>
       </div>
-      <div class="p-col-12" *ngIf="words.wordList.length > 0">
+      <div class="p-col-12 p-ai-stretch vertical-container" *ngIf="words.wordList.length > 0">
         <div class="p-grid" style="background-color: #171a1e; margin-right: 15px">
-          <div class="p-col-3" style="padding: 0" *ngFor="let word of words.wordList">
+          <div class="p-col-2" style="padding: 0" *ngFor="let word of words.wordList">
             <app-word [word]="word"></app-word>
           </div>
         </div>
@@ -28,5 +28,8 @@
   </div>
   <div class="p-col-3">
     <app-scoreboard></app-scoreboard>
+  </div>
+  <div>
+    <button pButton pRipple type="button" label="Kilépés" class="p-button-rounded p-button-danger exitButton" (click)="leaveGame()"></button>
   </div>
 </div>

@@ -42,7 +42,6 @@ export class WordsComponent implements OnInit, OnDestroy {
       this.loadingService.loadingOff();
       this.startGame(data);
     });
-    this.openTC();
   }
 
   ngOnDestroy(): void {
@@ -122,10 +121,15 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   private openTC() {
-    document.getElementById('timeControl').style.left = '0px';
+    console.log('opening TC');
+    if (document.getElementById('timeControl')) {
+      document.getElementById('timeControl').style.left = '0px';
+    }
   }
 
   private closeTC() {
-    document.getElementById('timeControl').style.left = '-480px';
+    if (document.getElementById('timeControl')) {
+      document.getElementById('timeControl').style.left = '-480px';
+    }
   }
 }
