@@ -19,7 +19,7 @@
       </div>
       <div class="p-col-12 p-ai-stretch vertical-container" *ngIf="words.wordList.length > 0">
         <div class="p-grid" style="background-color: #171a1e; margin-right: 15px">
-          <div class="p-col-2" style="padding: 0" *ngFor="let word of words.wordList">
+          <div class="p-col-2" style="padding: 8px" *ngFor="let word of words.wordList">
             <app-word [word]="word"></app-word>
           </div>
         </div>
