@@ -17,10 +17,10 @@ import {LoadingService} from '../../../service/loading.service';
 })
 export class WordsComponent implements OnInit, OnDestroy {
   words: WordsModel = new WordsModel();
-  remainingTime = 60;
+  remainingTime;
   countBack: number;
-  countBackMin: number;
-  countBackSec: string;
+  countBackMin = '0';
+  countBackSec = '00';
   interval;
   gameActive = false;
   wordFoudedCount = 0;
@@ -43,6 +43,7 @@ export class WordsComponent implements OnInit, OnDestroy {
       this.loadingService.loadingOff();
       this.startGame(data);
     });
+    this.openTC();
   }
 
   ngOnDestroy(): void {
@@ -67,6 +68,7 @@ export class WordsComponent implements OnInit, OnDestroy {
       this.scoreboard.reset();
     }
     this.gameActive = true;
+    this.closeTC();
     this.interval = setInterval(() => {
       this.countBack--;
       this.calculateDisplayTime();
@@ -77,7 +79,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   private calculateDisplayTime() {
-    this.countBackMin = Math.floor(this.countBack / 60);
+    this.countBackMin = Math.floor(this.countBack / 60).toString();
     this.countBackSec = (this.countBack % 60).toString().length < 2 ? '0' + (this.countBack % 60).toString() : (this.countBack % 60).toString();
   }
 
@@ -103,6 +105,7 @@ export class WordsComponent implements OnInit, OnDestroy {
         word.notFounded = true;
       }
     });
+    this.openTC();
   }
 
   leaveGame() {
@@ -114,5 +117,13 @@ export class WordsComponent implements OnInit, OnDestroy {
     audio.src = '';
     audio.load();
     audio.play();
+  }
+
+  private openTC() {
+    document.getElementById('timeControl').style.left = '0px';
+  }
+
+  private closeTC() {
+    document.getElementById('timeControl').style.left = '-230px';
   }
 }

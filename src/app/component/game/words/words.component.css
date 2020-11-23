@@ -18,3 +18,15 @@
   color: black;
   margin: 20px;
 }
+
+.timeControlClass {
+  width: 230px;
+  position: fixed;
+  overflow-y: auto;
+  z-index: 1;
+  top: 65px;
+  left: -230px;
+  background-color: #eae8e7;
+  overflow-x: hidden;
+  transition: 0.5s;
+}

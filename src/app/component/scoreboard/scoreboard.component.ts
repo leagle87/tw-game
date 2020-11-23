@@ -12,15 +12,6 @@ export class ScoreboardComponent {
 
   public players: WordplayerModel[] = [];
 
-
-  constructor() {
-    this.players.push(new WordplayerModel('black'));
-    this.players.push(new WordplayerModel('birka'));
-    this.players.push(new WordplayerModel('leagle'));
-    this.players.push(new WordplayerModel('pittya'));
-    this.players.push(new WordplayerModel('macook'));
-  }
-
   public addScore(name: string, score: number) {
     let player: WordplayerModel = this.findPlayerByName(name);
     if (player == null) {
