@@ -11,19 +11,25 @@
   <div class="p-col-9">
     <div class="p-grid">
       <div class="p-col-3">
-        <div class="p-col" *ngIf="gameActive">IDŐ: {{countBack}}</div>
-        <div class="p-col" *ngIf="!gameActive">VÉGE</div>
+        <div *ngIf="gameActive && countBack > 0">IDŐ: {{countBackMin}}:{{countBackSec}}</div>
+        <div *ngIf="!gameActive">VÉGE</div>
       </div>
-      <div class="p-col-8">
+      <div class="p-col-9">
         Megtalált szavak: {{wordFoudedCount}}/{{words.wordList.length}}
       </div>
-      <div class="p-col-12" style="text-align: center;">
-      <span *ngFor="let char of words.characterList">
-        <span class="charClass">{{char}}</span>
-      </span>
+      <div class="p-col-12">
+        <div class="chatSet">
+          <span *ngFor="let char of words.characterList">
+            <span class="char">{{char.toUpperCase()}}</span>
+          </span>
+        </div>
       </div>
-      <div class="p-col-2" style="font-size: 50px" *ngFor="let word of words.wordList">
-        <app-word [word]="word"></app-word>
+      <div class="p-col-12">
+        <div class="p-grid" style="background-color: #171a1e; margin-right: 15px">
+          <div class="p-col-2" style="height: 100px" *ngFor="let word of words.wordList">
+            <app-word [word]="word"></app-word>
+          </div>
+        </div>
       </div>
     </div>
   </div>

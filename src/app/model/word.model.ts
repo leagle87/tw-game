@@ -2,8 +2,7 @@ export class WordModel {
 
   word: string;
   founder: string;
-  founderColor: string;
-  notFounded: boolean = false;
+  notFounded = false;
 
   constructor(word: string) {
     this.word = word;

@@ -1,4 +1,4 @@
-import {WordModel} from "./word.model";
+import {WordModel} from './word.model';
 
 export class WordsModel {
 

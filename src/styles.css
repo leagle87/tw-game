@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-image: url("assets/b.jpg");
+}
+
+@font-face {
+  font-family: "Coiny";
+  src: local("Coiny"), url("assets/fonts/coiny-regular.ttf") format("truetype");
+}

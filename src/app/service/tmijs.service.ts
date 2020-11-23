@@ -67,8 +67,7 @@ export class TmijsService {
           // if (self) {return; }
           const message: Message = {
             user: userstate['display-name'],
-            message: messageText,
-            color: userstate['color']
+            message: messageText
           };
           // Handle different message types..
           switch (userstate['message-type']) {

@@ -19,6 +19,8 @@ export class WordsComponent implements OnInit, OnDestroy {
   words: WordsModel = new WordsModel();
   remainingTime = 60;
   countBack: number;
+  countBackMin: number;
+  countBackSec: string;
   interval;
   gameActive = false;
   wordFoudedCount = 0;
@@ -55,6 +57,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   private startGame(data: WordresponseModel) {
     clearInterval(this.interval);
     this.countBack = this.remainingTime;
+    this.calculateDisplayTime();
     this.words = new WordsModel();
     this.words.characterList = data.characterList;
     data.wordList.forEach(word => {
@@ -66,11 +69,16 @@ export class WordsComponent implements OnInit, OnDestroy {
     this.gameActive = true;
     this.interval = setInterval(() => {
       this.countBack--;
+      this.calculateDisplayTime();
       if (this.countBack <= 0) {
         this.gameEnd();
       }
     }, 1000);
+  }
 
+  private calculateDisplayTime() {
+    this.countBackMin = Math.floor(this.countBack / 60);
+    this.countBackSec = (this.countBack % 60).toString().length < 2 ? '0' + (this.countBack % 60).toString() : (this.countBack % 60).toString();
   }
 
   textRecieved(message: Message): void {
@@ -78,7 +86,6 @@ export class WordsComponent implements OnInit, OnDestroy {
       for (let i = 0; i < this.words.wordList.length; i++) {
         if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message) {
           this.words.wordList[i].founder = message.user;
-          this.words.wordList[i].founderColor = message.color;
           this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
           this.wordFoudedCount++;
           this.playAudio();

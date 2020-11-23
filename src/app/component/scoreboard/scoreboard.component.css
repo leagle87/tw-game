@@ -1,0 +1,22 @@
+.header {
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  background-color: #575757;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.boardBody {
+  background-color: #414141;
+  color: #b5b4b4;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.score {
+  text-align: center;
+  background-color: #f8e7b6;
+  border-radius: 8px;
+  color: #414141;
+}

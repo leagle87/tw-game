@@ -1,12 +1,12 @@
 <div style="font-size: 40px" #foundedWord *ngIf="word.founder || word.founder === undefined && word.notFounded">
   <p-contextMenu [target]="foundedWord" [model]="menuItems"></p-contextMenu>
-  <div [ngStyle]="{'color': word.founder ? '' : 'red'}">
-    {{word.word}}
+  <div [ngStyle]="{'color': word.founder ? '#F6B833' : '#C7C8CB'}">
+    {{word.word.toUpperCase()}}
   </div>
 </div>
 <div *ngIf="word.founder === undefined && word.notFounded == false">
-  <span style="font-size: 40px" *ngFor="let n of numSequence(word.word.length)">
+  <span style="font-size: 40px; color: #6f7174" *ngFor="let n of numSequence(word.word.length)">
     _
   </span>
 </div>
-<div style="font-size: 16px; height: 20px" [ngStyle]="{'color': word.founderColor}">{{word.founder}}</div>
+<div style="font-size: 16px; height: 20px; color: #baae8b">{{word.founder}}</div>
