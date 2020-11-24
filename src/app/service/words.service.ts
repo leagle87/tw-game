@@ -16,19 +16,22 @@ export class WordsService {
 
   getWords(letterCount: number, minWordCount: number, minWordLength: number): void {
     this.http.get('assets/arcanum_hu_words.txt', {responseType: 'text'})
+    // this.http.get('assets/szotar_com_words.txt', {responseType: 'text'})
       .subscribe(data => {
         const splittedData: string[] = data.split('\n');
+        console.log(splittedData);
         splittedData.splice(splittedData.length - 1);
         this.wordresponse.wordList = [];
         while (this.wordresponse.wordList.length < minWordCount || !this.containsOnlyRelevantLetters()) {
+          console.log(this.wordresponse.wordList.length);
           this.wordresponse.wordList = [];
           this.wordresponse.characterList = [];
           this.getRandomLetters(letterCount).forEach(ch => {
             this.wordresponse.characterList.push(ch);
           });
           splittedData.forEach(word => {
-            if (word.length >= minWordLength && this.contains(this.wordresponse.characterList, word)) {
-              this.wordresponse.wordList.push(word);
+            if (word.trim().length >= minWordLength && this.contains(this.wordresponse.characterList, word.trim())) {
+              this.wordresponse.wordList.push(word.trim());
             }
           });
         }

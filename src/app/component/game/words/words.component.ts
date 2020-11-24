@@ -32,9 +32,9 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (!this.tmijsService.on || !this.tmijsService.connected) {
-      this.leaveGame();
-    }
+    // if (!this.tmijsService.on || !this.tmijsService.connected) {
+    //   this.leaveGame();
+    // }
     this.tmijsService.eventEmitter.on(MESSAGE_SENT, data => {
       this.textRecieved(data);
     });

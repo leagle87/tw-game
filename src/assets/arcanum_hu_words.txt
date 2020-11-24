@@ -290,7 +290,6 @@ eső
 evő
 faj
 fal
-$fan
 far
 ező
 báb
@@ -969,7 +968,6 @@ sziú
 karó
 szol
 szok
-szop
 ázik
 ondó
 ónas
@@ -1384,7 +1382,6 @@ tusa
 pikk
 pika
 pint
-$pina
 pipi
 pikó
 pipa
@@ -1443,7 +1440,6 @@ poci
 poca
 pofa
 gumi
-cici
 cica
 polc
 gumó
@@ -1784,7 +1780,6 @@ megy
 megé
 mejj
 mely
-$mell
 meny
 ment
 meló
@@ -2335,7 +2330,6 @@ alól
 jóga
 síel
 amíg
-$segg
 seft
 síri
 sejk
@@ -2381,7 +2375,6 @@ apát
 farm
 fark
 faló
-$fasz
 faun
 atka
 fasé
@@ -3210,8 +3203,6 @@ végok
 vitat
 osztó
 sanda
-ciciz
-cicic
 végső
 avval
 pohos
@@ -4006,7 +3997,6 @@ kurta
 zúzás
 kuruc
 sorba
-$kurva
 bevág
 őrzés
 kőris
@@ -4308,7 +4298,6 @@ zajgó
 fékez
 csege
 sürög
-csecs
 csíny
 izsóp
 immár
@@ -4330,7 +4319,6 @@ fölöz
 várás
 lőrés
 cselő
-$csesz
 süveg
 cézár
 fölül
@@ -4585,7 +4573,6 @@ bogoz
 heged
 kiért
 érzik
-csöcs
 gemma
 kiadó
 esély
@@ -4896,7 +4883,6 @@ gépír
 csupa
 nőzik
 kígyó
-$punci
 puncs
 büdös
 habkő
@@ -4943,7 +4929,6 @@ herma
 borul
 dobál
 dobás
-$farok
 borsó
 farol
 borkő
@@ -5000,14 +4985,12 @@ kiönt
 kúszó
 kincs
 kijár
-$faszi
 pupák
 boszú
 kínai
 miatt
 hétfő
 kinin
-$fasza
 inger
 dátum
 köböl
@@ -6217,7 +6200,6 @@ füves
 górál
 karéj
 buckó
-szopó
 hopla
 lábtó
 orkán
@@ -7013,7 +6995,6 @@ padlós
 terjed
 öncélú
 kreton
-$lebasz
 odakap
 átjáró
 sózott
@@ -7496,7 +7477,6 @@ odarúg
 tökfej
 menőke
 rémítő
-$seggel
 konvex
 elránt
 toppan
@@ -7890,7 +7870,6 @@ faeper
 ömleng
 rosseb
 szóköz
-szopik
 vajsav
 zsurló
 betyár
@@ -8062,7 +8041,6 @@ henceg
 nagyít
 csőágy
 galóca
-szopós
 rángás
 szünet
 terasz
@@ -8089,7 +8067,6 @@ reváns
 precíz
 vérdíj
 kenőcs
-szopás
 merész
 hérics
 kezelő
@@ -8165,7 +8142,6 @@ síruha
 szorul
 szóror
 angyal
-leszop
 máshol
 leázik
 vízgáz
@@ -8322,7 +8298,6 @@ csapás
 csapáz
 vedres
 nutria
-$melles
 fonott
 encián
 gyámkő
@@ -9665,7 +9640,6 @@ pagoda
 felkér
 árenda
 altest
-$ribanc
 mammon
 fikusz
 felold
@@ -9779,7 +9753,6 @@ kiázik
 fibula
 lassan
 felibe
-kiszop
 áradat
 kiszid
 kínzás
@@ -9929,7 +9902,6 @@ sajtár
 paplan
 paplak
 ködlik
-beszop
 beázik
 pállás
 felház
@@ -9987,7 +9959,6 @@ morcos
 csíkos
 csíkoz
 utolér
-$csikló
 torlat
 utópia
 bászli
@@ -10160,7 +10131,6 @@ ráhajt
 mintáz
 mintás
 döglik
-csecse
 övcsat
 halmos
 halmoz
@@ -11014,7 +10984,6 @@ megfúl
 megfúj
 mágyia
 beevez
-$lófasz
 csörge
 lófark
 cseles
@@ -11207,7 +11176,6 @@ cséplő
 gyötör
 utálat
 dinnye
-$baszik
 röpima
 megbök
 bűzlik
@@ -12680,7 +12648,6 @@ takaró
 zsebel
 leckéz
 népség
-$faszol
 hinnye
 pogány
 király
@@ -13011,7 +12978,6 @@ megokol
 revízió
 vérbélű
 ebtövis
-csecses
 divízió
 lúdgége
 szivacs
@@ -13120,7 +13086,6 @@ tűzopál
 mákgubó
 szemzés
 bodorít
-szopóka
 kihajtó
 dugulás
 favorit
@@ -13634,7 +13599,6 @@ figuráz
 figurás
 lemagáz
 előhívó
-szoptat
 eldugul
 chablon
 kiszáll
@@ -14843,7 +14807,6 @@ kiátkoz
 celofán
 házhely
 zagyvál
-megszop
 megkapó
 betanul
 hárítás
@@ -15753,7 +15716,6 @@ letörés
 bakancs
 spiráns
 főtiszt
-$fanszőr
 ajánlat
 enmagam
 andalog
@@ -17066,7 +17028,6 @@ emelget
 kapcsos
 kapcsol
 praliné
-$mellbaj
 frissül
 gyökszó
 korhely
@@ -17541,7 +17502,6 @@ izmosul
 kíséret
 ökörség
 illetve
-$elcsesz
 gyutacs
 utóétel
 vízcsap
@@ -19216,7 +19176,6 @@ sátorfa
 szijács
 eleddig
 kikapós
-$ingmell
 szebbít
 jéggyár
 edényes
@@ -20892,7 +20851,6 @@ sujtásos
 kevesell
 konszern
 hadapród
-$tyúkmell
 regement
 szorulás
 idegölés
@@ -20918,7 +20876,6 @@ annuitás
 drágulás
 sósperec
 mensevik
-$dugópénz
 reteszel
 trubadúr
 cirkalom
@@ -23273,7 +23230,6 @@ körkörös
 idomszer
 grenadin
 örökzöld
-$csesztet
 vadember
 vontatás
 kárhozat
@@ -24015,7 +23971,6 @@ látlelet
 állítgat
 tőhangzó
 semelyik
-$baszogat
 elrothad
 festeget
 pattogás
@@ -24244,7 +24199,6 @@ ugyanúgy
 táborkar
 közízlés
 egynapos
-$kibaszik
 jelenség
 szelence
 valahogy
@@ -25136,7 +25090,6 @@ megindul
 megesket
 perszóna
 vízfűtés
-$ribancos
 feltakar
 jégpálya
 hadvezér
@@ -25593,7 +25546,6 @@ széttart
 üledékes
 körüljár
 jóllakás
-szopókás
 igencsak
 megőszít
 flótázik
@@ -25878,7 +25830,6 @@ szótároz
 álpátosz
 átszökik
 masszázs
-$lekurváz
 gátlásos
 ülőfürdő
 jóllakik
@@ -26105,7 +26056,6 @@ tettvágy
 rizsnyák
 apámuram
 hóbortos
-szopogat
 kihámlik
 iramodás
 szederfa
@@ -27022,7 +26972,6 @@ bemélyed
 előérzet
 csattanó
 leszorít
-szoptató
 lótrágya
 társalog
 makaróni
@@ -28177,7 +28126,6 @@ felolvad
 felolvas
 oka-foka
 kirendel
-$kifaszol
 ebédezik
 akcentus
 összejön
@@ -29923,7 +29871,6 @@ lecsúszik
 főpásztor
 üzemorvos
 vezénylet
-$szexuális
 nyomtaték
 szabadság
 kézbesítő
@@ -30020,7 +29967,6 @@ kihitelez
 utánamegy
 formátlan
 érlelődik
-$faszarágó
 árdrágító
 vízikerék
 eminencia
@@ -30670,7 +30616,6 @@ szeszipar
 megversel
 fedőlemez
 bearanyoz
-megszopik
 akkoriban
 végromlás
 helycsere
@@ -31820,7 +31765,6 @@ kicsipkéz
 hársfatea
 pendlizik
 csökönyös
-$mellbimbó
 augusztus
 agrárpárt
 északpont
@@ -31884,7 +31828,6 @@ csakhamar
 uralkodik
 legalitás
 rezonátor
-szoptatás
 lengedező
 kiszöktet
 akkurátus
@@ -31911,7 +31854,6 @@ konyhakés
 felfedező
 alájegyez
 becsinált
-szoptatós
 nedvesség
 vonalrajz
 gombolyít
@@ -32899,7 +32841,6 @@ bolyongás
 sorvezető
 minimális
 kézikönyv
-$tyúkmellű
 párosujjú
 dísztárgy
 kupadöntő
@@ -33545,7 +33486,6 @@ egyenruha
 négyzetes
 koldusbot
 hajlékony
-$melltartó
 hatszoros
 dinasztia
 cserepező
@@ -34774,7 +34714,7 @@ békateknő
 öcsémuram
 belakatol
 zabkenyér
-szurokkő.
+szurokkő
 tejeskása
 forgópont
 bogárszín
@@ -36084,7 +36024,6 @@ hencsereg
 párosodás
 kezdőpont
 aktivista
-$baszkurál
 lerepeszt
 megtorlás
 tavirózsa
@@ -36909,7 +36848,6 @@ fényudvar
 varázsige
 aranyifjú
 hamvasság
-$mellszívó
 megformál
 hunyócska
 kinyargal
@@ -37951,7 +37889,6 @@ ditirambus
 ilyenszerű
 lepecsétel
 fiókegyház
-$kurvapecér
 megszívlel
 messzünnen
 sikeretlen
@@ -38010,7 +37947,6 @@ csikóbőrös
 szobabútor
 fölösleges
 meglátszik
-$mellesedik
 ablakbélés
 litografál
 némiképpen
@@ -38377,7 +38313,6 @@ motorizált
 lehervaszt
 vészedzett
 ésszerűsít
-$seggdugasz
 megfontolt
 ökonomista
 fajelmélet
@@ -38849,7 +38784,6 @@ férfiszabó
 gramofonál
 gáztartály
 fatalizmus
-megszoptat
 megpezsdít
 rablóvezér
 befejezett
@@ -38905,7 +38839,6 @@ pipadohány
 tarlóvirág
 békaügetés
 csattogtat
-csecserész
 ingoványos
 borzadalom
 felhasogat
@@ -39948,7 +39881,6 @@ ellenérzés
 megalvaszt
 kvártélyoz
 napraforgó
-$baszakodik
 cirokseprű
 szabadjára
 pénzsegély
@@ -42448,7 +42380,6 @@ merevgörcs
 kilöttyent
 statisztál
 összeterel
-csecsszívó
 kuruckodik
 akkommodál
 tengernagy
@@ -42813,7 +42744,6 @@ tenyészidő
 építőmunka
 csillagkép
 vasárnapló
-csecsszopó
 összetörik
 matrózblúz
 gyújtószál
@@ -43530,7 +43460,6 @@ rétesliszt
 házcsoport
 világosító
 diákotthon
-csecsbimbó
 fogadkozás
 beszívódik
 fellátogat
@@ -46783,7 +46712,6 @@ operaénekes
 célszerűsít
 milyenfajta
 félmeztelen
-$kurválkodik
 kézművesség
 semlegesség
 összeszerez
@@ -48200,7 +48128,6 @@ elkeseredés
 döntvénytár
 átnyilallik
 ösztönösség
-$félrebaszik
 betonkeverő
 szégyenfolt
 heverdelnap
@@ -48486,7 +48413,6 @@ menyasszony
 megkeményít
 selyemkendő
 munkásállam
-$deszkamellű
 megmagyaráz
 beleegyezés
 ellenszámla
@@ -50032,7 +49958,6 @@ hanghordozás
 csalhatatlan
 kutyaszorító
 hátramozdító
-kecskecsöcsű
 tanítómester
 szervezetlen
 összetömődik
@@ -51356,7 +51281,7 @@ bealkonyodik
 építésvezető
 illusztrátor
 halottégetés
-szálfegyver.
+szálfegyver
 vakszerencse
 belegyakorol
 szakácskönyv
@@ -51520,7 +51445,6 @@ felbátorodik
 megsokszoroz
 átkívánkozik
 kabinetiroda
-$kurvahajcsár
 visszaakaszt
 fehérvarrónő
 kardmarkolat
@@ -53583,7 +53507,6 @@ szoknyanadrág
 istállótrágya
 etyelepetyele
 nyelvtehetség
-$homoszexuális
 kristálycukor
 tudományszomj
 ingatlaniroda
