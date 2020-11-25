@@ -6,3 +6,5 @@
 <p-button [disabled]="!tmijsService.connected || !tmijsService.on" (click)="disconnect()" label="Disconnect"></p-button>
 <br>
 <p-button [disabled]="!tmijsService.connected || !tmijsService.on" (click)="startGame()" label="Játék"></p-button>
+
+<p-button [disabled]="tmijsService.on" (click)="loginTw()" label="Login with Twitch"></p-button>

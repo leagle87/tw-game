@@ -27,6 +27,9 @@
     "rxjs": "~6.3.3",
     "tmi.js": "1.5.0",
     "tslib": "^1.9.0",
+    "twitch": "4.3.1",
+    "twitch-auth": "4.3.1",
+    "twitch-chat-client": "4.3.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -34,7 +37,7 @@
     "@angular/cli": "11.0.2",
     "@angular/compiler-cli": "11.0.2",
     "@angular/language-service": "11.0.2",
-    "@types/node": "~8.9.4",
+    "@types/node": "14.14.9",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "~4.5.0",
@@ -49,5 +52,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "4.0.5"
+  },
+  "browser": {
+    "net": false,
+    "tls": false
   }
 }
