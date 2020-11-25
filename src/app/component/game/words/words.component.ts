@@ -71,6 +71,7 @@ export class WordsComponent implements OnInit, OnDestroy {
       this.calculateDisplayTime();
       if (this.countBack <= 0) {
         this.gameEnd();
+        clearInterval(this.interval);
       }
     }, 1000);
   }

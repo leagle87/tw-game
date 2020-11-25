@@ -21,3 +21,19 @@
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 }
+
+.rotate {
+  animation: rotation 1s infinite linear;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
