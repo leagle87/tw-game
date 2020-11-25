@@ -2,23 +2,28 @@
   <div class="p-col-9">
     <div class="p-grid">
       <div class="p-col-3">
-        <div class="counter">
+        <div class="counter" [ngStyle]="{'background-color': countBack <= 10 ? '#DC2D33' : '#f6b833'}">
           {{countBackMin}}:{{countBackSec}}
         </div>
         <div id="timeControl" class="timeControlClass">
-          <p-inputNumber [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="1" max="300"></p-inputNumber>
-          <button pButton pRipple [disabled]="remainingTime === undefined" type="button" (click)="newGame()" label="Indít" class="p-button-rounded p-button-warning" style="margin-left: 10px"></button>
+          <div *ngIf="!isGameActive">
+            <p-inputNumber [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="1" max="300"></p-inputNumber>
+            <button pButton pRipple [disabled]="remainingTime === undefined" type="button" (click)="newGame()" label="Indít" class="p-button-rounded p-button-warning" style="margin-left: 10px"></button>
+          </div>
+          <div *ngIf="isGameActive">
+            <button pButton pRipple type="button" (click)="endGame()" label="Stop" class="p-button-rounded p-button-danger" style="right: -111px"></button>
+          </div>
         </div>
       </div>
       <div class="p-col-9" *ngIf="words.wordList.length > 0">
         <div class="chatSet">
-          <span *ngFor="let char of words.characterList">
+          <span *ngFor="let char of words.characterList; index as i" style="border-right-style: solid; border-right-color: #f2972a;" [ngStyle]="{'border-right-style': i < (words.characterList.length - 1) ? 'solid' : ''}">
             <span class="char">{{char.toUpperCase()}}</span>
           </span>
         </div>
       </div>
-      <div class="p-col-12 p-ai-stretch vertical-container" *ngIf="words.wordList.length > 0">
-        <div class="p-grid" style="background-color: #171a1e; margin-right: 15px">
+      <div class="p-col-12" style="padding-top: 30px" *ngIf="words.wordList.length > 0">
+        <div class="p-grid" style="background-color: #171a1e; margin-right: 15px; padding-left: 50px;">
           <div class="p-col-2" style="padding: 8px" *ngFor="let word of words.wordList">
             <app-word [word]="word"></app-word>
           </div>
@@ -27,7 +32,14 @@
     </div>
   </div>
   <div class="p-col-3">
-    <app-scoreboard></app-scoreboard>
+    <div class="p-grid">
+      <div class="p-col-12" style="height: 170px; text-align: center">
+        <img src="assets/retroka.png" class="rotate" width="150" height="150" alt=""/>
+      </div>
+      <div class="p-col-12" *ngIf="words.wordList.length > 0">
+        <app-scoreboard></app-scoreboard>
+      </div>
+    </div>
   </div>
   <div>
     <button pButton pRipple type="button" label="Kilépés" class="p-button-rounded p-button-danger exitButton" (click)="leaveGame()"></button>

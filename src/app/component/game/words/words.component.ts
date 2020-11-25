@@ -23,6 +23,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   countBackSec = '00';
   interval;
   wordFoudedCount = 0;
+  isGameActive: boolean = false;
   @ViewChild(ScoreboardComponent) private scoreboard: ScoreboardComponent;
 
   constructor(public wordsService: WordsService,
@@ -56,6 +57,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   private startGame(data: WordresponseModel) {
     clearInterval(this.interval);
     this.countBack = this.remainingTime;
+    this.isGameActive = true;
     this.calculateDisplayTime();
     this.words = new WordsModel();
     this.words.characterList = data.characterList;
@@ -70,8 +72,7 @@ export class WordsComponent implements OnInit, OnDestroy {
       this.countBack--;
       this.calculateDisplayTime();
       if (this.countBack <= 0) {
-        this.gameEnd();
-        clearInterval(this.interval);
+        this.endGame();
       }
     }, 1000);
   }
@@ -101,7 +102,9 @@ export class WordsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private gameEnd() {
+  public endGame() {
+    clearInterval(this.interval);
+    this.isGameActive = false;
     this.words.wordList.forEach(word => {
       if (!word.founder) {
         word.notFounded = true;
@@ -130,7 +133,7 @@ export class WordsComponent implements OnInit, OnDestroy {
 
   private closeTC() {
     if (document.getElementById('timeControl')) {
-      document.getElementById('timeControl').style.left = '-480px';
+      document.getElementById('timeControl').style.left = '-220px';
     }
   }
 }
