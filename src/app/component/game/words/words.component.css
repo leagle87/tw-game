@@ -1,7 +1,7 @@
 .charClass {
   margin: 20px;
   font-size: 50px;
-  font-family: Coiny, Arial, sans-serif;
+  font-family: Asap;
   color: #f6b833;
 }
 .chatSet {
@@ -10,13 +10,15 @@
   border-style: solid;
   border-width: 20px;
   width: fit-content;
-  margin: auto;
   background-color: #f8ac30;
+  margin: 11px auto auto;
+  height: 120px;
 }
 
 .char {
   color: black;
   margin: 20px;
+  padding: 10px;
 }
 
 .timeControlClass {
@@ -50,8 +52,8 @@
   border-color: #f2972a;
   width: 183px;
   margin-left: -46px;
-  padding-left: 15px;
-  padding-top: 35px;
+  padding-left: 20px;
+  padding-top: 52px;
   margin-top: -67px;
   height: 155px;
 }

@@ -3,7 +3,7 @@
     <div class="p-grid">
       <div class="p-col-3">
         <div class="counter" [ngStyle]="{'background-color': countBack <= 10 ? '#DC2D33' : '#f6b833'}">
-          {{countBackMin}}:{{countBackSec}}
+          <b>{{countBackMin}}:{{countBackSec}}</b>
         </div>
         <div id="timeControl" class="timeControlClass">
           <div *ngIf="!isGameActive">
@@ -17,9 +17,9 @@
       </div>
       <div class="p-col-9" *ngIf="words.wordList.length > 0">
         <div class="chatSet">
-          <span *ngFor="let char of words.characterList; index as i" style="border-right-style: solid; border-right-color: #f2972a;" [ngStyle]="{'border-right-style': i < (words.characterList.length - 1) ? 'solid' : ''}">
-            <span class="char">{{char.toUpperCase()}}</span>
-          </span>
+          <div *ngFor="let char of words.characterList; index as i" style="width: 90px; display: inline-block; border-right-style: solid; border-right-color: #f2972a; font-style: normal; padding-top: 10px; padding-bottom: 12px;" [ngStyle]="{'border-right-style': i < (words.characterList.length - 1) ? 'solid' : ''}">
+            <b><span class="char">{{char.toUpperCase()}}</span></b>
+          </div>
         </div>
       </div>
       <div class="p-col-12" style="padding-top: 30px" *ngIf="words.wordList.length > 0">
