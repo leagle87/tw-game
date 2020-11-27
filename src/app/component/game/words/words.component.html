@@ -7,7 +7,7 @@
         </div>
         <div id="timeControl" class="timeControlClass">
           <div *ngIf="!isGameActive">
-            <p-inputNumber [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="1" max="300"></p-inputNumber>
+            <p-inputNumber [(ngModel)]="remainingTime" placeholder="Idő (másodperc)" min="30" max="300"></p-inputNumber>
             <button pButton pRipple [disabled]="remainingTime === undefined" type="button" (click)="newGame()" label="Indít" class="p-button-rounded p-button-warning" style="margin-left: 10px"></button>
           </div>
           <div *ngIf="isGameActive">

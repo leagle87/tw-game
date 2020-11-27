@@ -90,7 +90,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   textRecieved(message: Message): void {
     if (this.countBack > 0) {
       for (let i = 0; i < this.words.wordList.length; i++) {
-        if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message) {
+        if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message.toLowerCase()) {
           this.words.wordList[i].founder = message.user;
           this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
           this.wordFoudedCount++;
