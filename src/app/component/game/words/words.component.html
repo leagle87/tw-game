@@ -24,7 +24,7 @@
       </div>
       <div class="p-col-12" style="padding-top: 30px" *ngIf="words.wordList.length > 0">
         <div class="p-grid" style="background-color: #171a1e; margin-right: 15px; padding-left: 50px;">
-          <div class="p-col-2" style="padding: 8px" *ngFor="let word of words.wordList">
+          <div class="p-col-2" style="padding: 16px 8px 16px;" *ngFor="let word of words.wordList">
             <app-word [word]="word"></app-word>
           </div>
         </div>
