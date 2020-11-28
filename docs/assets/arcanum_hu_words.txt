@@ -1031,6 +1031,7 @@ kelő
 kese
 kert
 kenő
+rakó
 szét
 szér
 széf
