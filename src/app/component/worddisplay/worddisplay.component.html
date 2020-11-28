@@ -1,6 +1,5 @@
-<div style="font-size: 40px" #foundedWord *ngIf="word.founder || word.founder === undefined && word.notFounded">
-  <p-contextMenu [target]="foundedWord" [model]="menuItems"></p-contextMenu>
-  <div [ngStyle]="{'color': word.founder ? '#F6B833' : '#C7C8CB'}">
+<div style="font-size: 40px; cursor: pointer" #foundedWord *ngIf="word.founder || word.founder === undefined && word.notFounded">
+  <div [ngStyle]="{'color': word.founder ? '#F6B833' : '#C7C8CB'}" (click)="openSzotar()">
     <b>{{word.word.toUpperCase()}}</b>
   </div>
 </div>

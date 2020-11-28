@@ -9,27 +9,15 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./worddisplay.component.css'],
   providers: [WordsService]
 })
-export class WorddisplayComponent implements OnInit {
+export class WorddisplayComponent {
 
   @Input() public word: WordModel;
-  menuItems: MenuItem[];
-
-  ngOnInit(): void {
-    this.menuItems = [
-      {
-        label: 'Mit jelent?',
-        command: () => {
-          this.openSzotar();
-        }
-      }
-    ];
-  }
 
   numSequence(n: number): Array<number> {
     return Array(n);
   }
 
-  private openSzotar() {
+  openSzotar() {
     window.open('https://www.arcanum.hu/hu/online-kiadvanyok/search/?query=' + this.word.word);
   }
 }

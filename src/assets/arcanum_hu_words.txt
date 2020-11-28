@@ -385,6 +385,7 @@ ion
 ipa
 irt
 itt
+iza
 bőg
 bőr
 ivó

@@ -12,8 +12,6 @@ export class LoginComponent {
   userName: string = environment.user;
   pass: string = environment.pass;
   channel: string;
-  private startTime: number;
-  private endTime: number;
 
   constructor(public tmijsService: TmijsService,
               private router: Router) {

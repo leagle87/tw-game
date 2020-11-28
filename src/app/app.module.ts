@@ -10,11 +10,9 @@ import {ScoreboardComponent} from './component/scoreboard/scoreboard.component';
 import {TmijsService} from './service/tmijs.service';
 import {LoginComponent} from './component/login/login.component';
 import {WordsComponent} from './component/game/words/words.component';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {LoadingService} from './service/loading.service';
-import {ContextMenuModule} from 'primeng/contextmenu';
 import {RippleModule} from 'primeng/ripple';
 import {InputNumberModule} from 'primeng/inputnumber';
 
@@ -32,10 +30,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ProgressSpinnerModule,
     ButtonModule,
     InputTextModule,
-    ContextMenuModule,
     RippleModule,
     InputNumberModule
   ],
