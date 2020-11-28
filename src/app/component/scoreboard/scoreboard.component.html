@@ -1,7 +1,7 @@
 <div class="p-grid">
   <div class="p-col-12 header"><b>PONTSZÁMOK</b></div>
   <div class="p-col-12 boardBody">
-    <div class="p-grid" style="font-size: 30px; border-bottom-style: solid; border-bottom-color: #171a1e; margin-top: 6px" *ngFor="let player of players; index as i">
+    <div class="p-grid" style="font-size: 30px; border-bottom-color: #171a1e; margin-top: 6px" *ngFor="let player of players; index as i"  [ngStyle]="{'border-bottom-style': i < (players.length - 1) ? 'solid' : ''}">
       <div class="p-col-10">
         <b>
           <div class="p-grid" *ngIf="i + 1 === 1" style="color: #ffcf62">
