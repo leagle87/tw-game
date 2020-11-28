@@ -24,7 +24,7 @@ export class WordsComponent implements OnInit, OnDestroy {
   interval;
   wordFoudedCount = 0;
   isGameActive: boolean = false;
-  @ViewChild(ScoreboardComponent) private scoreboard: ScoreboardComponent;
+  @ViewChild(ScoreboardComponent) public scoreboard: ScoreboardComponent;
 
   constructor(public wordsService: WordsService,
               public tmijsService: TmijsService,
@@ -96,13 +96,14 @@ export class WordsComponent implements OnInit, OnDestroy {
           this.wordFoudedCount++;
           this.playAudio();
         } else if (this.words.wordList[i].word === message.message) {
-          this.tmijsService.say('@' + message.user + ' a ' + message.message + ' vótmán');
+          this.tmijsService.say('@' + message.user + ' a(z) ' + message.message + ' vótmán');
         }
       }
     }
   }
 
   public endGame() {
+    this.scoreboard.addPlayersToAllTime();
     clearInterval(this.interval);
     this.isGameActive = false;
     this.words.wordList.forEach(word => {
@@ -125,7 +126,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   private openTC() {
-    console.log('opening TC');
     if (document.getElementById('timeControl')) {
       document.getElementById('timeControl').style.left = '0px';
     }

@@ -311,7 +311,6 @@ fiú
 fog
 fok
 fon
-fos
 bír
 bíz
 fuj
@@ -5803,7 +5802,6 @@ kalap
 hárem
 hárfa
 fázós
-fosik
 golyó
 megül
 szegy
@@ -5940,7 +5938,6 @@ lésza
 tuskó
 tusol
 préri
-fosos
 eköré
 kamat
 turné
@@ -5955,7 +5952,6 @@ ebtej
 eozin
 alóla
 kalóz
-fosás
 káder
 alkar
 alkat
@@ -16590,7 +16586,6 @@ kivetés
 sokszor
 vizitál
 váltóőr
-fosógém
 padmaly
 kitálal
 elmered
@@ -21309,7 +21304,6 @@ kisgazda
 szottyan
 kultivál
 kapupénz
-szófosás
 vulkános
 ellentét
 prímszám

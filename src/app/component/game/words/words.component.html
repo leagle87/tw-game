@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="p-col-12" style="padding-top: 30px" *ngIf="words.wordList.length > 0">
-        <div class="p-grid" style="background-color: #171a1e; margin-right: 15px; padding-left: 50px;">
+        <div class="p-grid" style="background-color: #171a1e; margin-right: 15px; padding-left: 50px; border-radius: 30px">
           <div class="p-col-2" style="padding: 16px 8px 16px;" *ngFor="let word of words.wordList">
             <app-word [word]="word"></app-word>
           </div>
@@ -38,6 +38,19 @@
       </div>
       <div class="p-col-12" *ngIf="words.wordList.length > 0">
         <app-scoreboard></app-scoreboard>
+      </div>
+    </div>
+  </div>
+  <div style="position: fixed; left: 35px; width: 71%; bottom: 20px; color: black;">
+    <div class="p-grid">
+      <div class="p-col-4" *ngIf="scoreboard && scoreboard.allTimePlayers.length >=1" style="border-radius: 30px; background-color: #ffcf62; font-size: 36px; text-align: center">
+        <b>1. {{scoreboard.allTimePlayers[0].name}} - {{scoreboard.allTimePlayers[0].score}} pont</b>
+      </div>
+      <div class="p-col-4" *ngIf="scoreboard && scoreboard.allTimePlayers.length >=2" style="border-radius: 30px; background-color: #eae8e7; font-size: 36px; text-align: center">
+        <b>2. {{scoreboard.allTimePlayers[1].name}} - {{scoreboard.allTimePlayers[1].score}} pont</b>
+      </div>
+      <div class="p-col-4" *ngIf="scoreboard && scoreboard.allTimePlayers.length >=3" style="border-radius: 30px; background-color: #ce834c; font-size: 36px; text-align: center">
+        <b>3. {{scoreboard.allTimePlayers[2].name}} - {{scoreboard.allTimePlayers[2].score}} pont</b>
       </div>
     </div>
   </div>
