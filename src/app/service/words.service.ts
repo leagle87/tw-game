@@ -17,7 +17,7 @@ export class WordsService {
   getWords(letterCount: number, minWordCount: number, minWordLength: number): void {
     this.http.get('assets/arcanum_hu_words.txt', {responseType: 'text'})
       .subscribe(data => {
-        const splittedData: string[] = data.split('\n');
+        const splittedData: string[] = data.split('\n').filter(word => word.trim().length >= minWordLength && word.trim().length <= letterCount);
         splittedData.splice(splittedData.length - 1);
         this.wordresponse.wordList = [];
         while (this.wordresponse.wordList.length < minWordCount || !this.containsOnlyRelevantLetters()) {
@@ -27,7 +27,7 @@ export class WordsService {
             this.wordresponse.characterList.push(ch);
           });
           splittedData.forEach(word => {
-            if (word.trim().length >= minWordLength && this.contains(this.wordresponse.characterList, word.trim())) {
+            if (this.contains(this.wordresponse.characterList, word.trim())) {
               this.wordresponse.wordList.push(word.trim());
             }
           });

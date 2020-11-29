@@ -218,7 +218,6 @@ duó
 íme
 íny
 edz
-eff
 írt
 egy
 ejh
@@ -749,7 +748,6 @@ azúr
 árul
 árus
 árva
-sscc
 ásat
 bébi
 fiág
@@ -2089,7 +2087,6 @@ ivás
 watt
 izom
 abba
-enny
 ének
 izzó
 enyh
@@ -5667,7 +5664,6 @@ mivel
 lepel
 kerék
 kajak
-picsa
 mível
 hálás
 tőkés

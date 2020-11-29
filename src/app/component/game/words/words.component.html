@@ -41,20 +41,40 @@
       </div>
     </div>
   </div>
-  <div style="position: fixed; left: 35px; width: 71%; bottom: 20px; color: black;">
-    <div class="p-grid">
-      <div class="p-col-4" *ngIf="scoreboard && scoreboard.allTimePlayers.length >=1" style="border-radius: 30px; background-color: #ffcf62; font-size: 36px; text-align: center">
+  <div style="position: fixed; left: 35px; width: 71%; bottom: 20px; color: black;" (click)="showAllTimeScoreBoard()">
+    <div class="p-grid" *ngIf="scoreboard">
+      <div class="p-col-4" *ngIf="scoreboard.allTimePlayers.length >=1" style="border-radius: 30px; background-color: #ffcf62; font-size: 36px; text-align: center">
         <b>1. {{scoreboard.allTimePlayers[0].name}} - {{scoreboard.allTimePlayers[0].score}} pont</b>
       </div>
-      <div class="p-col-4" *ngIf="scoreboard && scoreboard.allTimePlayers.length >=2" style="border-radius: 30px; background-color: #eae8e7; font-size: 36px; text-align: center">
+      <div class="p-col-4" *ngIf="scoreboard.allTimePlayers.length >=2" style="border-radius: 30px; background-color: #eae8e7; font-size: 36px; text-align: center">
         <b>2. {{scoreboard.allTimePlayers[1].name}} - {{scoreboard.allTimePlayers[1].score}} pont</b>
       </div>
-      <div class="p-col-4" *ngIf="scoreboard && scoreboard.allTimePlayers.length >=3" style="border-radius: 30px; background-color: #ce834c; font-size: 36px; text-align: center">
+      <div class="p-col-4" *ngIf="scoreboard.allTimePlayers.length >=3" style="border-radius: 30px; background-color: #ce834c; font-size: 36px; text-align: center">
         <b>3. {{scoreboard.allTimePlayers[2].name}} - {{scoreboard.allTimePlayers[2].score}} pont</b>
       </div>
     </div>
   </div>
   <div>
     <button pButton pRipple type="button" label="Kilépés" class="p-button-rounded p-button-danger exitButton" (click)="leaveGame()"></button>
+  </div>
+</div>
+
+<div id="overlayScoreboard">
+  <div class="p-grid" *ngIf="scoreboard" (click)="closeScoreBoard()" style="
+    width: 33%;
+    position: absolute;
+    top: 20%;
+    left: 33%;
+    background-color: black;
+    border-radius: 30px;
+    overflow: auto;
+    height: 75%">
+    <div class="p-col-12" style="color: #ffcf62; text-align: center; font-size: 36px">
+      <b>ÖSSZESÍTÉS</b>
+    </div>
+    <div class="p-col-12" *ngFor="let player of scoreboard.allTimePlayers; index as i" style="border-radius: 30px; font-size: 36px; text-align: center; margin: 5px; width: 95%; height: 60px"
+         [ngStyle]="{'background-color': i == 0 ? '#ffcf62' : (i == 1 ? '#eae8e7' : (i == 2 ? '#ce834c' : '#b5b4b4'))}">
+      <b>{{i + 1}}. {{player.name}} - {{player.score}} pont</b>
+    </div>
   </div>
 </div>

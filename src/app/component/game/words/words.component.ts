@@ -23,7 +23,8 @@ export class WordsComponent implements OnInit, OnDestroy {
   countBackSec = '00';
   interval;
   wordFoudedCount = 0;
-  isGameActive: boolean = false;
+  isGameActive = false;
+  showAllTimeBoard = false;
   @ViewChild(ScoreboardComponent) public scoreboard: ScoreboardComponent;
 
   constructor(public wordsService: WordsService,
@@ -135,5 +136,13 @@ export class WordsComponent implements OnInit, OnDestroy {
     if (document.getElementById('timeControl')) {
       document.getElementById('timeControl').style.left = '-220px';
     }
+  }
+
+  showAllTimeScoreBoard() {
+    document.getElementById('overlayScoreboard').style.display = 'block';
+  }
+
+  closeScoreBoard() {
+    document.getElementById('overlayScoreboard').style.display = 'none';
   }
 }
