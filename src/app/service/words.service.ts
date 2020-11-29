@@ -20,7 +20,7 @@ export class WordsService {
         const splittedData: string[] = data.split('\n').filter(word => word.trim().length >= minWordLength && word.trim().length <= letterCount);
         splittedData.splice(splittedData.length - 1);
         this.wordresponse.wordList = [];
-        while (this.wordresponse.wordList.length < minWordCount || !this.containsOnlyRelevantLetters()) {
+        while (this.wordresponse.wordList.length < minWordCount || this.wordresponse.wordList.length > 48 || !this.containsOnlyRelevantLetters()) {
           this.wordresponse.wordList = [];
           this.wordresponse.characterList = [];
           this.getRandomLetters(letterCount).forEach(ch => {

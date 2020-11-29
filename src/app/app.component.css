@@ -26,7 +26,7 @@
   animation: rotation 1s infinite linear;
   position: absolute;
   top: 30%;
-  left: 50%;
+  left: 46%;
 }
 
 @keyframes rotation {

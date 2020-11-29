@@ -13,27 +13,6 @@ export class ScoreboardComponent {
   public players: WordplayerModel[] = [];
   public allTimePlayers: WordplayerModel[] = [];
 
-  constructor() {
-    const wordplayerModel1 = new WordplayerModel('birka');
-    wordplayerModel1.score = 10;
-    this.allTimePlayers.push(wordplayerModel1);
-    const wordplayerModel2 = new WordplayerModel('leagle');
-    wordplayerModel2.score = 8;
-    this.allTimePlayers.push(wordplayerModel2);
-    const wordplayerModel3 = new WordplayerModel('black');
-    wordplayerModel3.score = 3;
-    this.allTimePlayers.push(wordplayerModel3);
-    const wordplayerModel4 = new WordplayerModel('birka');
-    wordplayerModel4.score = 10;
-    this.allTimePlayers.push(wordplayerModel4);
-    const wordplayerModel5 = new WordplayerModel('leagle');
-    wordplayerModel5.score = 8;
-    this.allTimePlayers.push(wordplayerModel5);
-    const wordplayerModel6 = new WordplayerModel('black');
-    wordplayerModel6.score = 3;
-    this.allTimePlayers.push(wordplayerModel6);
-  }
-
   public addScore(name: string, score: number) {
     let player: WordplayerModel = this.findPlayerByName(this.players, name);
     if (player == null) {
