@@ -1955,8 +1955,6 @@ pint
 pipa
 pipi
 piré
-pisa
-pisi
 pite
 piti
 pléd
@@ -3570,7 +3568,6 @@ felró
 felső
 felül
 felüt
-fenék
 fenés
 fenkő
 fenső
@@ -5491,10 +5488,6 @@ pirít
 piros
 pirók
 pirul
-pisál
-pisás
-pisil
-pisis
 pisla
 pissz
 pisze
@@ -13504,8 +13497,6 @@ beöntés
 bepakol
 bepácol
 beperel
-bepisál
-bepisil
 bepofáz
 bepótol
 bepucol
@@ -17354,8 +17345,6 @@ lepereg
 lepihen
 lepipál
 lepirít
-lepisál
-lepisil
 lepkész
 leporol
 leporoz
@@ -42453,8 +42442,6 @@ oxidálódik
 összeomlik
 összeömlik
 összepakol
-összepisál
-összepisil
 összepofoz
 összerabol
 összeragad
