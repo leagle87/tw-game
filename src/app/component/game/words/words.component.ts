@@ -24,7 +24,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   interval;
   wordFoudedCount = 0;
   isGameActive = false;
-  showAllTimeBoard = false;
   @ViewChild(ScoreboardComponent) public scoreboard: ScoreboardComponent;
 
   constructor(public wordsService: WordsService,
@@ -34,11 +33,10 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (!this.twitchService.isConnected()) {
+    if (!this.twitchService.isJoined) {
       this.leaveGame();
     }
     this.twitchService.eventEmitter.on(MESSAGE_SENT, data => {
-      console.log('message arrived: ', data);
       this.textRecieved(data);
     });
     this.wordsService.wordResponseFound.subscribe(data => {
@@ -92,14 +90,23 @@ export class WordsComponent implements OnInit, OnDestroy {
   textRecieved(message: Message): void {
     if (this.countBack > 0) {
       for (let i = 0; i < this.words.wordList.length; i++) {
-        if (this.words.wordList[i].founder === undefined && this.words.wordList[i].word === message.message.toLowerCase()) {
-          this.words.wordList[i].founder = message.user;
-          this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
-          this.wordFoudedCount++;
-          this.playAudio();
-        } else if (this.words.wordList[i].word === message.message) {
-          this.tmijsService.say('@' + message.user + ' a(z) ' + message.message + ' vótmán');
-          this.twitchService.say('@' + message.user + ' a ' + message.message + ' vótmán');
+        if (this.words.wordList[i].word === message.message.toLowerCase()) {
+          if (this.words.wordList[i].founder === undefined) {
+            this.words.wordList[i].founder = message.user;
+            this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
+            this.wordFoudedCount++;
+            this.playAudio();
+          } else {
+            let nevelo = 'a';
+            const vowels: string[] = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];
+            for (let j = 0; j < vowels.length; j++) {
+              if (vowels[j] === message.message.toLowerCase().charAt(0)) {
+                nevelo = 'az';
+                break;
+              }
+            }
+            this.twitchService.say('@' + message.user + ' ' + nevelo + ' ' + message.message + ' vótmán');
+          }
         }
       }
     }

@@ -46,6 +46,5 @@ export class ScoreboardComponent {
       playerToAdd.score += player.score;
     }
     this.allTimePlayers.sort((a, b) => a.score < b.score ? 1 : a.score > b.score ? -1 : 0);
-    console.log(this.allTimePlayers);
   }
 }

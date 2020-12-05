@@ -18,10 +18,9 @@ export class TwitchService {
   private redirectUri = environment.redirectUri;
   private tokenData;
   private chatClient: ChatClient;
-  activeChannel;
-  private messageSource = new Subject<Message>();
-  messageArrived = this.messageSource.asObservable();
+  activeChannel = 'black_xs';
   eventEmitter: EventEmitter = new EventEmitter();
+  isJoined = false;
 
   constructor(private http: HttpClient,
               private loadingService: LoadingService) {
@@ -40,7 +39,6 @@ export class TwitchService {
       '&code=' + code + '' +
       '&grant_type=authorization_code' +
       '&redirect_uri=' + this.redirectUri, null).toPromise().then((data: any) => {
-      console.log(data);
       this.tokenData = {
         'accessToken': data.access_token,
         'refreshToken': data.refresh_token,
@@ -65,7 +63,6 @@ export class TwitchService {
       this.chatClient.connect();
       this.chatClient.onMessage((channel, user, message) => {
         const m = new Message(user, message);
-        console.log(m);
         this.eventEmitter.emit(MESSAGE_SENT, m);
       });
       this.loadingService.loadingOff();
@@ -76,13 +73,14 @@ export class TwitchService {
     this.activeChannel = channel;
     this.loadingService.loadingOn();
     this.chatClient.join(this.activeChannel).then(() => {
+      this.isJoined = true;
       this.loadingService.loadingOff();
-      console.log(this.chatClient.isConnected);
     });
   }
 
   leaveChannel() {
     this.chatClient.part(this.activeChannel);
+    this.isJoined = false;
   }
 
   quit() {

@@ -1,9 +1,9 @@
-<p-button (click)="loginTw()" label="Login with Twitch"></p-button>
-<p-button (click)="quitTw()" label="Logout"></p-button>
+<p-button [disabled]="twitchService.isConnected()" (click)="loginTw()" label="Login with Twitch"></p-button>
+<p-button [disabled]="!twitchService.isConnected()" (click)="quitTw()" label="Logout"></p-button>
 <br>
-<input pInputText [(ngModel)]="channel">
+<input [disabled]="twitchService.isJoined || !twitchService.isConnected()" pInputText [(ngModel)]="channel">
 <br>
-<p-button (click)="connectTw()" label="Connect"></p-button>
-<p-button (click)="disconnectTw()" label="Disconnect"></p-button>
+<p-button [disabled]="twitchService.isJoined || !twitchService.isConnected()" (click)="connectTw()" label="Connect"></p-button>
+<p-button [disabled]="!twitchService.isJoined || !twitchService.isConnected()" (click)="disconnectTw()" label="Disconnect"></p-button>
 <br>
-<p-button (click)="startGame()" label="Játék"></p-button>
+<p-button [disabled]="!twitchService.isJoined || !twitchService.isConnected()" (click)="startGame()" label="Játék"></p-button>

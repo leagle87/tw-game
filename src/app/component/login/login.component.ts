@@ -12,17 +12,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private twitchService: TwitchService) {
+              public twitchService: TwitchService) {
     this.channel = this.twitchService.activeChannel;
   }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       if (params.get('code')) {
-        this.twitchService.start(params.get('code')).then(() => {
-            console.log('connected');
-          }
-        );
+        this.twitchService.start(params.get('code'));
       }
     });
   }
