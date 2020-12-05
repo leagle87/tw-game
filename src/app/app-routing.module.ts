@@ -5,6 +5,7 @@ import {WordsComponent} from './component/game/words/words.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'callback', component: LoginComponent },
   { path: 'game',
     children: [
       {

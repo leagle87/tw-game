@@ -2,12 +2,12 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {WordsService} from '../../../service/words.service';
 import {WordsModel} from '../../../model/words.model';
 import {ScoreboardComponent} from '../../scoreboard/scoreboard.component';
-import {MESSAGE_SENT, TmijsService} from '../../../service/tmijs.service';
 import {WordresponseModel} from '../../../service/model/wordresponse.model';
 import {WordModel} from '../../../model/word.model';
 import {Message} from '../../../model/message';
 import {Router} from '@angular/router';
 import {LoadingService} from '../../../service/loading.service';
+import {MESSAGE_SENT, TwitchService} from '../../../service/twitch.service';
 
 @Component({
   selector: 'app-words',
@@ -28,16 +28,17 @@ export class WordsComponent implements OnInit, OnDestroy {
   @ViewChild(ScoreboardComponent) public scoreboard: ScoreboardComponent;
 
   constructor(public wordsService: WordsService,
-              public tmijsService: TmijsService,
+              public twitchService: TwitchService,
               private loadingService: LoadingService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    if (!this.tmijsService.on || !this.tmijsService.connected) {
+    if (!this.twitchService.isConnected()) {
       this.leaveGame();
     }
-    this.tmijsService.eventEmitter.on(MESSAGE_SENT, data => {
+    this.twitchService.eventEmitter.on(MESSAGE_SENT, data => {
+      console.log('message arrived: ', data);
       this.textRecieved(data);
     });
     this.wordsService.wordResponseFound.subscribe(data => {
@@ -98,6 +99,7 @@ export class WordsComponent implements OnInit, OnDestroy {
           this.playAudio();
         } else if (this.words.wordList[i].word === message.message) {
           this.tmijsService.say('@' + message.user + ' a(z) ' + message.message + ' vótmán');
+          this.twitchService.say('@' + message.user + ' a ' + message.message + ' vótmán');
         }
       }
     }

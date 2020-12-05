@@ -1,8 +1,9 @@
-<p-button [disabled]="tmijsService.on" (click)="login()" label="Login"></p-button>
-<p-button [disabled]="!tmijsService.on" (click)="logout()" label="Logout"></p-button>
+<p-button (click)="loginTw()" label="Login with Twitch"></p-button>
+<p-button (click)="quitTw()" label="Logout"></p-button>
 <br>
-<input pInputText [disabled]="tmijsService.connected || !tmijsService.on" [(ngModel)]="channel">
-<p-button [disabled]="tmijsService.connected || !tmijsService.on" (click)="connect()" label="Connect"></p-button>
-<p-button [disabled]="!tmijsService.connected || !tmijsService.on" (click)="disconnect()" label="Disconnect"></p-button>
+<input pInputText [(ngModel)]="channel">
 <br>
-<p-button [disabled]="!tmijsService.connected || !tmijsService.on" (click)="startGame()" label="Játék"></p-button>
+<p-button (click)="connectTw()" label="Connect"></p-button>
+<p-button (click)="disconnectTw()" label="Disconnect"></p-button>
+<br>
+<p-button (click)="startGame()" label="Játék"></p-button>

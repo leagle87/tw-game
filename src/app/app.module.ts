@@ -7,7 +7,6 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {WorddisplayComponent} from './component/worddisplay/worddisplay.component';
 import {ScoreboardComponent} from './component/scoreboard/scoreboard.component';
-import {TmijsService} from './service/tmijs.service';
 import {LoginComponent} from './component/login/login.component';
 import {WordsComponent} from './component/game/words/words.component';
 import {ButtonModule} from 'primeng/button';
@@ -15,6 +14,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {LoadingService} from './service/loading.service';
 import {RippleModule} from 'primeng/ripple';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {TwitchService} from './service/twitch.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
     RippleModule,
     InputNumberModule
   ],
-  providers: [TmijsService, LoadingService],
+  providers: [TwitchService, LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

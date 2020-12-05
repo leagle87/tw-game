@@ -1,41 +1,50 @@
-import {Component} from '@angular/core';
-import {TmijsService} from '../../service/tmijs.service';
-import {environment} from '../../../environments/environment';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TwitchService} from '../../service/twitch.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  userName: string = environment.user;
-  pass: string = environment.pass;
+export class LoginComponent implements OnInit {
   channel: string;
 
-  constructor(public tmijsService: TmijsService,
-              private router: Router) {
-    this.channel = this.tmijsService.currentChannel;
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private twitchService: TwitchService) {
+    this.channel = this.twitchService.activeChannel;
   }
 
-  login() {
-    this.tmijsService.start(this.userName, this.pass);
-  }
-
-  logout() {
-    this.tmijsService.stop();
-  }
-
-  connect() {
-    this.tmijsService.joinChannel(this.channel);
-  }
-
-  disconnect() {
-    this.tmijsService.leaveChannel();
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      if (params.get('code')) {
+        this.twitchService.start(params.get('code')).then(() => {
+            console.log('connected');
+          }
+        );
+      }
+    });
   }
 
   startGame() {
     this.router.navigate(['/game/words']);
+  }
+
+  loginTw() {
+    window.open(this.twitchService.getLoginUrl(), '_self');
+  }
+
+  connectTw() {
+    this.twitchService.joinChannel(this.channel);
+  }
+
+  quitTw() {
+    this.twitchService.quit();
+  }
+
+  disconnectTw() {
+    this.twitchService.leaveChannel();
   }
 
 }
