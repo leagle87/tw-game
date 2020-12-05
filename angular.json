@@ -13,10 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "twitch-auth",
-              "twitch-chat-client"
-            ],
             "outputPath": "dist/tw-game",
             "index": "src/index.html",
             "main": "src/main.ts",
