@@ -1,55 +1,30 @@
 import {Component, OnInit} from '@angular/core';
-import {TmijsService} from '../../service/tmijs.service';
-import {environment} from '../../../environments/environment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TwitchService} from '../../service/twitch.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [TwitchService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userName: string = environment.user;
-  pass: string = environment.pass;
   channel: string;
 
-  constructor(public tmijsService: TmijsService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private twitchService: TwitchService) {
-    this.channel = this.tmijsService.currentChannel;
+    this.channel = this.twitchService.activeChannel;
   }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       if (params.get('code')) {
-        console.log(params.get('code'));
-        this.twitchService.getTokens(params.get('code')).then(() => {
-          this.twitchService.start().then(() => {
+        this.twitchService.start(params.get('code')).then(() => {
             console.log('connected');
-          });
           }
         );
       }
     });
-  }
-
-  login() {
-    this.tmijsService.start(this.userName, this.pass);
-  }
-
-  logout() {
-    this.tmijsService.stop();
-  }
-
-  connect() {
-    this.tmijsService.joinChannel(this.channel);
-  }
-
-  disconnect() {
-    this.tmijsService.leaveChannel();
   }
 
   startGame() {
@@ -61,10 +36,14 @@ export class LoginComponent implements OnInit {
   }
 
   connectTw() {
-    this.twitchService.join(this.channel);
+    this.twitchService.joinChannel(this.channel);
   }
 
-  say() {
-    this.twitchService.say();
+  quitTw() {
+    this.twitchService.quit();
+  }
+
+  disconnectTw() {
+    this.twitchService.leaveChannel();
   }
 }

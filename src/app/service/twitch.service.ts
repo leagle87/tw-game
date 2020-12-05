@@ -1,9 +1,14 @@
 import {RefreshableAuthProvider, StaticAuthProvider} from 'twitch-auth';
-import { ChatClient } from 'twitch-chat-client';
+import {ChatClient} from 'twitch-chat-client';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {LoadingService} from './loading.service';
+import {EventEmitter} from 'events';
+import {Message} from '../model/message';
+import {Subject} from 'rxjs';
+
+export const MESSAGE_SENT = 'tmijs_service_message_sent';
 
 @Injectable()
 export class TwitchService {
@@ -13,7 +18,10 @@ export class TwitchService {
   private redirectUri = environment.redirectUri;
   private tokenData;
   private chatClient: ChatClient;
-  private activeChannel;
+  activeChannel;
+  private messageSource = new Subject<Message>();
+  messageArrived = this.messageSource.asObservable();
+  eventEmitter: EventEmitter = new EventEmitter();
 
   constructor(private http: HttpClient,
               private loadingService: LoadingService) {
@@ -25,53 +33,68 @@ export class TwitchService {
       '&response_type=code&scope=chat:read+chat:edit';
   }
 
-  async getTokens(code: string) {
+  async start(code: string) {
+    this.loadingService.loadingOn();
     await this.http.post('https://id.twitch.tv/oauth2/token?client_id=' + this.clientId + '' +
       '&client_secret=' + this.clientSecret + '' +
       '&code=' + code + '' +
       '&grant_type=authorization_code' +
       '&redirect_uri=' + this.redirectUri, null).toPromise().then((data: any) => {
-        console.log(data);
-        this.tokenData = {
-          'accessToken': data.access_token,
-          'refreshToken': data.refresh_token,
-          'expiryTimestamp': data.expires_in
-        };
-    });
-  }
+      console.log(data);
+      this.tokenData = {
+        'accessToken': data.access_token,
+        'refreshToken': data.refresh_token,
+        'expiryTimestamp': data.expires_in
+      };
 
-  async start() {
-    const clientId = this.clientId;
-    const auth = new RefreshableAuthProvider(
-      new StaticAuthProvider(clientId, this.tokenData.accessToken),
-      {
-        clientSecret: this.clientSecret,
-        refreshToken: this.tokenData.refreshToken,
-        expiry: null,
-        onRefresh: async ({ accessToken, refreshToken, expiryDate }) => {
-          this.tokenData.accessToken = accessToken;
-          this.tokenData.refreshToken = refreshToken;
-          this.tokenData.expiryTimestamp = expiryDate;
+      const auth = new RefreshableAuthProvider(
+        new StaticAuthProvider(this.clientId, this.tokenData.accessToken),
+        {
+          clientSecret: this.clientSecret,
+          refreshToken: this.tokenData.refreshToken,
+          expiry: null,
+          onRefresh: async ({accessToken, refreshToken, expiryDate}) => {
+            this.tokenData.accessToken = accessToken;
+            this.tokenData.refreshToken = refreshToken;
+            this.tokenData.expiryTimestamp = expiryDate;
+          }
         }
-      }
-    );
+      );
 
-    this.chatClient = new ChatClient(auth);
-    await this.chatClient.connect();
-    this.chatClient.onMessage((channel, user, message) => {
-      console.log(channel);
-      console.log(user);
-      console.log(message);
+      this.chatClient = new ChatClient(auth);
+      this.chatClient.connect();
+      this.chatClient.onMessage((channel, user, message) => {
+        const m = new Message(user, message);
+        console.log(m);
+        this.eventEmitter.emit(MESSAGE_SENT, m);
+      });
+      this.loadingService.loadingOff();
     });
   }
 
-  join(channel: string) {
+  joinChannel(channel: string) {
     this.activeChannel = channel;
-    console.log('joining to channel: ', this.activeChannel);
-    this.chatClient.join(this.activeChannel).then(() => console.log('joined to channel: ', this.activeChannel));
+    this.loadingService.loadingOn();
+    this.chatClient.join(this.activeChannel).then(() => {
+      this.loadingService.loadingOff();
+      console.log(this.chatClient.isConnected);
+    });
   }
 
-  say() {
-    this.chatClient.say(this.activeChannel, 'hi');
+  leaveChannel() {
+    this.chatClient.part(this.activeChannel);
+  }
+
+  quit() {
+    this.loadingService.loadingOn();
+    this.chatClient.quit().then(() => this.loadingService.loadingOff());
+  }
+
+  say(message: string) {
+    this.chatClient.say(this.activeChannel, message);
+  }
+
+  isConnected() {
+    return this.chatClient && this.chatClient.isConnected;
   }
 }
