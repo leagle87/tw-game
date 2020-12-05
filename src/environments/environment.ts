@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   user: '',
-  pass: ''
+  pass: '',
+  clientId: '',
+  clientSecret: '',
+  redirectUri: ''
 };
 
 /*

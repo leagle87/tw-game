@@ -26,10 +26,12 @@ export class LoginComponent implements OnInit {
     this.route.queryParamMap.subscribe(params => {
       if (params.get('code')) {
         console.log(params.get('code'));
-        this.twitchService.getTokens(params.get('code'));
-        this.twitchService.start().then(() => {
-          console.log('connected');
-        });
+        this.twitchService.getTokens(params.get('code')).then(() => {
+          this.twitchService.start().then(() => {
+            console.log('connected');
+          });
+          }
+        );
       }
     });
   }
@@ -56,5 +58,13 @@ export class LoginComponent implements OnInit {
 
   loginTw() {
     window.open(this.twitchService.getLoginUrl(), '_self');
+  }
+
+  connectTw() {
+    this.twitchService.join(this.channel);
+  }
+
+  say() {
+    this.twitchService.say();
   }
 }

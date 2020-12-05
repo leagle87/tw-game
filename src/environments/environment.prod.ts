@@ -1,5 +1,8 @@
 export const environment = {
   production: true,
   user: '',
-  pass: ''
+  pass: '',
+  clientId: '',
+  clientSecret: '',
+  redirectUri: ''
 };

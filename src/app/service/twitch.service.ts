@@ -1,35 +1,22 @@
-import {ClientCredentialsAuthProvider, RefreshableAuthProvider, StaticAuthProvider} from 'twitch-auth';
+import {RefreshableAuthProvider, StaticAuthProvider} from 'twitch-auth';
 import { ChatClient } from 'twitch-chat-client';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-// import { promises as fs } from 'fs';
+import {environment} from '../../environments/environment';
+import {LoadingService} from './loading.service';
 
 @Injectable()
 export class TwitchService {
 
-  clientId = '53rx93tnvzavrwf0budtim9txiu1i0';
-  clientSecret = 'xpfnofjma9a5d2fiuh5u2613hhcf7e';
-  redirectUri = 'http://localhost:4200/callback';
-  // code = '3s3zoeunqhpc0lr5zxof76x6euqic1'; // kiszedni a valaszbol
-  // accessToken = 'nqx92gfzb0kos9mcwurfzpfaj4azm'; // kiszedni a valaszbol
-  // refreshToken = '298uui9s66ibe3skzs8poztheaffzx6aeyi9m55nmupboxs7dt'; // kiszedni a valaszbol
-  accessToken;
-  refreshToken;
+  private clientId = environment.clientId;
+  private clientSecret = environment.clientSecret;
+  private redirectUri = environment.redirectUri;
+  private tokenData;
+  private chatClient: ChatClient;
+  private activeChannel;
 
-  constructor(private http: HttpClient) {
-  }
-
-  getTokens(code: string) {
-    this.http.post('https://id.twitch.tv/oauth2/token?client_id=' + this.clientId + '' +
-      '&client_secret=' + this.clientSecret + '' +
-      '&code=' + code + '' +
-      '&grant_type=authorization_code' +
-      '&redirect_uri=' + this.redirectUri, null).subscribe((data: any) => {
-        console.log(data);
-        this.accessToken = data.access_token;
-        const expiresIn = data.expires_in;
-        this.refreshToken = data.refresh_token;
-    });
+  constructor(private http: HttpClient,
+              private loadingService: LoadingService) {
   }
 
   getLoginUrl() {
@@ -38,26 +25,53 @@ export class TwitchService {
       '&response_type=code&scope=chat:read+chat:edit';
   }
 
+  async getTokens(code: string) {
+    await this.http.post('https://id.twitch.tv/oauth2/token?client_id=' + this.clientId + '' +
+      '&client_secret=' + this.clientSecret + '' +
+      '&code=' + code + '' +
+      '&grant_type=authorization_code' +
+      '&redirect_uri=' + this.redirectUri, null).toPromise().then((data: any) => {
+        console.log(data);
+        this.tokenData = {
+          'accessToken': data.access_token,
+          'refreshToken': data.refresh_token,
+          'expiryTimestamp': data.expires_in
+        };
+    });
+  }
+
   async start() {
-    const clientSecret = this.clientSecret;
-    const refreshToken = this.refreshToken;
-    const accessToken = this.accessToken;
     const clientId = this.clientId;
-    const tokenData = {
-      'accessToken': this.accessToken,
-      'refreshToken': this.refreshToken,
-      'expiryTimestamp': 1000
-    };
-    const auth = new ClientCredentialsAuthProvider(clientId, clientSecret);
+    const auth = new RefreshableAuthProvider(
+      new StaticAuthProvider(clientId, this.tokenData.accessToken),
+      {
+        clientSecret: this.clientSecret,
+        refreshToken: this.tokenData.refreshToken,
+        expiry: null,
+        onRefresh: async ({ accessToken, refreshToken, expiryDate }) => {
+          this.tokenData.accessToken = accessToken;
+          this.tokenData.refreshToken = refreshToken;
+          this.tokenData.expiryTimestamp = expiryDate;
+        }
+      }
+    );
 
-    const chatClient = new ChatClient(auth, {channels: ['leagle87']});
-    await chatClient.connect();
-    //
-    // chatClient.onMessage((channel, user, message) => {
-    //   console.log(channel);
-    //   console.log(user);
-    //   console.log(message);
-    // });
+    this.chatClient = new ChatClient(auth);
+    await this.chatClient.connect();
+    this.chatClient.onMessage((channel, user, message) => {
+      console.log(channel);
+      console.log(user);
+      console.log(message);
+    });
+  }
 
+  join(channel: string) {
+    this.activeChannel = channel;
+    console.log('joining to channel: ', this.activeChannel);
+    this.chatClient.join(this.activeChannel).then(() => console.log('joined to channel: ', this.activeChannel));
+  }
+
+  say() {
+    this.chatClient.say(this.activeChannel, 'hi');
   }
 }
