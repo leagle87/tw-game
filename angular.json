@@ -158,5 +158,8 @@
       }
     }
   },
-  "defaultProject": "tw-game"
+  "defaultProject": "tw-game",
+  "cli": {
+    "analytics": false
+  }
 }

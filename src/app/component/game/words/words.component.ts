@@ -8,6 +8,7 @@ import {Message} from '../../../model/message';
 import {Router} from '@angular/router';
 import {LoadingService} from '../../../service/loading.service';
 import {MESSAGE_SENT, TwitchService} from '../../../service/twitch.service';
+import * as constants from "constants";
 
 @Component({
   selector: 'app-words',
@@ -22,7 +23,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   countBackMin = '0';
   countBackSec = '00';
   interval;
-  wordFoudedCount = 0;
   isGameActive = false;
   @ViewChild(ScoreboardComponent) public scoreboard: ScoreboardComponent;
 
@@ -51,7 +51,6 @@ export class WordsComponent implements OnInit, OnDestroy {
   newGame() {
     this.loadingService.loadingOn();
     this.wordsService.getWords(8, 15, 3);
-    this.wordFoudedCount = 0;
   }
 
   private startGame(data: WordresponseModel) {
@@ -88,14 +87,14 @@ export class WordsComponent implements OnInit, OnDestroy {
   }
 
   textRecieved(message: Message): void {
-    if (this.countBack > 0) {
+    if (this.isGameActive) {
       for (let i = 0; i < this.words.wordList.length; i++) {
         if (this.words.wordList[i].word === message.message.toLowerCase()) {
           if (this.words.wordList[i].founder === undefined) {
             this.words.wordList[i].founder = message.user;
             this.scoreboard.addScore(message.user, this.words.wordList[i].word.length);
-            this.wordFoudedCount++;
             this.playAudio();
+            break;
           } else {
             let nevelo = 'a';
             const vowels: string[] = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'ö', 'ő', 'u', 'ú', 'ü', 'ű'];
@@ -108,6 +107,10 @@ export class WordsComponent implements OnInit, OnDestroy {
             this.twitchService.say('@' + message.user + ' ' + nevelo + ' ' + message.message + ' vótmán');
           }
         }
+      }
+      if (this.words.wordList.filter(word => word.founder === undefined).length == 0) {
+        this.twitchService.say('!unnep');
+        this.endGame();
       }
     }
   }

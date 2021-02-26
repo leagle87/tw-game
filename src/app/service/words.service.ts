@@ -32,9 +32,6 @@ export class WordsService {
             }
           });
         }
-        this.wordresponse.wordList.sort(function (a, b) {
-          return a.length - b.length;
-        });
         this.wordResponseSource.next(this.wordresponse);
       });
   }
@@ -65,7 +62,11 @@ export class WordsService {
   private containsOnlyRelevantLetters(): boolean {
     const wordWorkCopy: any[] = [];
     this.wordresponse.wordList.forEach(word => {
-      wordWorkCopy.push(word.split(''));
+      let chs: any[] = [];
+      word.split('').forEach(ch => {
+        chs.push({ch: ch, alreadyCounted: false});
+      });
+      wordWorkCopy.push(chs);
     });
 
     const charListWorkCopy: any[] = [];
@@ -76,19 +77,14 @@ export class WordsService {
       for (const word of wordWorkCopy) {
         wch.alreadyCounted = false;
         for (const ch of word) {
-          if (ch === wch.ch && wch.alreadyCounted === false) {
+          if (!ch.alreadyCounted && ch.ch === wch.ch && wch.alreadyCounted === false) {
             wch.count++;
             wch.alreadyCounted = true;
+            ch.alreadyCounted = true;
           }
         }
       }
     }
-    let isValid = true;
-    charListWorkCopy.forEach(ch => {
-      if (ch.count === 0) {
-        isValid = false;
-      }
-    });
-    return isValid;
+    return charListWorkCopy.filter(ch => ch.count === 0).length === 0;
   }
 }

@@ -29,7 +29,6 @@ import {TwitchService} from './service/twitch.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
     ButtonModule,
     InputTextModule,
     RippleModule,

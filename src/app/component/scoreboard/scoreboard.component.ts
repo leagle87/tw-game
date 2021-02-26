@@ -14,13 +14,17 @@ export class ScoreboardComponent {
   public allTimePlayers: WordplayerModel[] = [];
 
   public addScore(name: string, score: number) {
-    let player: WordplayerModel = this.findPlayerByName(this.players, name);
-    if (player == null) {
-      player = new WordplayerModel(name);
-      this.players.push(player);
+    this.addPlayerScore(this.players, name, score);
+  }
+
+  reset() {
+    this.players = [];
+  }
+
+  addPlayersToAllTime() {
+    for (const player of this.players) {
+      this.addPlayerScore(this.allTimePlayers, player.name, player.score)
     }
-    player.score += score;
-    this.players.sort((a, b) => a.score < b.score ? 1 : a.score > b.score ? -1 : 0);
   }
 
   private findPlayerByName(list: WordplayerModel[], name: string): WordplayerModel {
@@ -32,19 +36,13 @@ export class ScoreboardComponent {
     return null;
   }
 
-  reset() {
-    this.players = [];
-  }
-
-  addPlayersToAllTime() {
-    for (const player of this.players) {
-      let playerToAdd = this.findPlayerByName(this.allTimePlayers, player.name);
-      if (playerToAdd == null) {
-        playerToAdd = new WordplayerModel(player.name);
-        this.allTimePlayers.push(playerToAdd);
-      }
-      playerToAdd.score += player.score;
+  private addPlayerScore(list: WordplayerModel[], name: string, score: number) {
+    let player = this.findPlayerByName(list, name);
+    if (player == null) {
+      player = new WordplayerModel(name);
+      list.push(player);
     }
-    this.allTimePlayers.sort((a, b) => a.score < b.score ? 1 : a.score > b.score ? -1 : 0);
+    player.score += score;
+    list.sort((a, b) => a.score < b.score ? 1 : a.score > b.score ? -1 : 0);
   }
 }
